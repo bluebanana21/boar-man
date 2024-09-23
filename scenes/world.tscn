@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bn22r1qaycqkx"]
+[gd_scene load_steps=28 format=3 uid="uid://bn22r1qaycqkx"]
 
 [ext_resource type="Texture2D" uid="uid://c8arnlq67qi7" path="res://assets/textures/grids/Dark/texture_05.png" id="1_20tk5"]
 [ext_resource type="Texture2D" uid="uid://b58xv1joypxo5" path="res://assets/textures/grids/Orange/texture_09.png" id="2_4g7fi"]
@@ -10,6 +10,14 @@
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/camera_3d_resource.gd" id="8_huh2v"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="9_5lj70"]
 [ext_resource type="Script" path="res://scenes/area_3d.gd" id="10_3ba0x"]
+[ext_resource type="Shader" path="res://assets/shader/psx-post.gdshader" id="11_ojjgn"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yeixw"]
+shader = ExtResource("11_ojjgn")
+shader_parameter/enabled = true
+shader_parameter/dithering = true
+shader_parameter/colors = 12
+shader_parameter/dither_size = 3
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_e1jkv"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -103,78 +111,86 @@ far = 4000.0
 
 [node name="World" type="Node3D"]
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+material = SubResource("ShaderMaterial_yeixw")
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+size = Vector2i(1152, 648)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport"]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
 shadow_enabled = true
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport"]
 environment = SubResource("Environment_at28d")
 
-[node name="Map" type="Node3D" parent="."]
+[node name="Map" type="Node3D" parent="SubViewportContainer/SubViewport"]
 
-[node name="Floor" type="CSGBox3D" parent="Map"]
+[node name="Floor" type="CSGBox3D" parent="SubViewportContainer/SubViewport/Map"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 material_override = SubResource("StandardMaterial3D_bjhdm")
 use_collision = true
 size = Vector3(1000, 1, 1000)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Map"]
+[node name="CSGBox3D" type="CSGBox3D" parent="SubViewportContainer/SubViewport/Map"]
 transform = Transform3D(0.827835, 0, -0.560971, 0, 1, 0, 0.560971, 0, 0.827835, 3.22087, 0.5, -1.93914)
 material_override = SubResource("StandardMaterial3D_5w87i")
 use_collision = true
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="Map"]
+[node name="CSGBox3D2" type="CSGBox3D" parent="SubViewportContainer/SubViewport/Map"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 5.02424)
 material_override = SubResource("StandardMaterial3D_cbfog")
 use_collision = true
 size = Vector3(1.5, 1.5, 1.5)
 
-[node name="CSGBox3D3" type="CSGBox3D" parent="Map"]
+[node name="CSGBox3D3" type="CSGBox3D" parent="SubViewportContainer/SubViewport/Map"]
 transform = Transform3D(0.773298, 0, -0.634042, 0, 1, 0, 0.634042, 0, 0.773298, -2.92376, 1, -4.31777)
 material_override = SubResource("StandardMaterial3D_x5gg2")
 material_overlay = SubResource("ShaderMaterial_43gcj")
 use_collision = true
 size = Vector3(2, 2, 2)
 
-[node name="CSGBox3D4" type="CSGBox3D" parent="Map"]
+[node name="CSGBox3D4" type="CSGBox3D" parent="SubViewportContainer/SubViewport/Map"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.76187, 5.09375, -11.7266)
 use_collision = true
 size = Vector3(6.68, 10.1875, 1)
 
-[node name="CSGBox3D5" type="CSGBox3D" parent="Map"]
+[node name="CSGBox3D5" type="CSGBox3D" parent="SubViewportContainer/SubViewport/Map"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.17803, 4.94019, -11.6144)
 use_collision = true
 size = Vector3(6.68, 9.88037, 1)
 
-[node name="CSGBox3D6" type="CSGBox3D" parent="Map"]
+[node name="CSGBox3D6" type="CSGBox3D" parent="SubViewportContainer/SubViewport/Map"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7.63847, 5.06989, -17.4041)
 use_collision = true
 size = Vector3(12.3794, 10.1398, 1)
 
-[node name="CSGBox3D7" type="CSGBox3D" parent="Map"]
+[node name="CSGBox3D7" type="CSGBox3D" parent="SubViewportContainer/SubViewport/Map"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8.02714, 4.88812, -18.066)
 use_collision = true
 size = Vector3(12.3794, 9.77625, 1)
 
-[node name="Player" parent="." instance=ExtResource("5_vivv0")]
+[node name="Player" parent="SubViewportContainer/SubViewport" instance=ExtResource("5_vivv0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.967916, 0, 0.879526)
 
-[node name="PhantomCamera3D" type="Node3D" parent="."]
+[node name="PhantomCamera3D" type="Node3D" parent="SubViewportContainer/SubViewport"]
 transform = Transform3D(-0.983751, 0.0912959, -0.15459, -5.21541e-08, 0.861056, 0.50851, 0.179536, 0.500248, -0.847065, -2.38419e-07, 1.49999, -17.0578)
 script = ExtResource("6_m5yp5")
 tween_resource = SubResource("Resource_26wg5")
 camera_3d_resource = SubResource("Resource_cm1f4")
 
-[node name="Area3D" type="Area3D" parent="." node_paths=PackedStringArray("area_pcam")]
+[node name="Area3D" type="Area3D" parent="SubViewportContainer/SubViewport" node_paths=PackedStringArray("area_pcam")]
 priority = 5
 script = ExtResource("10_3ba0x")
 area_pcam = NodePath("../PhantomCamera3D")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Area3D"]
 transform = Transform3D(10, 0, 0, 0, 0.5, 0, 0, 0, 10, 0, 0.5, -11.4855)
 shape = SubResource("BoxShape3D_lodn7")
 
-[node name="PhantomCamera3D2" type="Node3D" parent="."]
+[node name="PhantomCamera3D2" type="Node3D" parent="SubViewportContainer/SubViewport"]
 transform = Transform3D(0.975295, 0.112333, -0.190212, -0.0720221, 0.975701, 0.20693, 0.208836, -0.188119, 0.959687, 0, 1.49999, 2.73658)
 script = ExtResource("6_m5yp5")
 priority = 1
@@ -182,27 +198,27 @@ tween_resource = SubResource("Resource_buyd3")
 tween_on_load = false
 camera_3d_resource = SubResource("Resource_f3sqj")
 
-[node name="Area3D2" type="Area3D" parent="." node_paths=PackedStringArray("area_pcam")]
+[node name="Area3D2" type="Area3D" parent="SubViewportContainer/SubViewport" node_paths=PackedStringArray("area_pcam")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.74454)
 priority = 5
 script = ExtResource("10_3ba0x")
 area_pcam = NodePath("../PhantomCamera3D2")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D2"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Area3D2"]
 transform = Transform3D(10, 0, 0, 0, 0.5, 0, 0, 0, 10, 0, 0.5, -9.94983)
 shape = SubResource("BoxShape3D_lodn7")
 
-[node name="Area3D3" type="Area3D" parent="." node_paths=PackedStringArray("area_pcam")]
+[node name="Area3D3" type="Area3D" parent="SubViewportContainer/SubViewport" node_paths=PackedStringArray("area_pcam")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9.57267)
 priority = 5
 script = ExtResource("10_3ba0x")
 area_pcam = NodePath("../PhantomCamera3D3")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D3"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Area3D3"]
 transform = Transform3D(10, 0, 0, 0, 0.5, 0, 0, 0, 10, 0, 0.5, -9.94983)
 shape = SubResource("BoxShape3D_lodn7")
 
-[node name="PhantomCamera3D3" type="Node3D" parent="." node_paths=PackedStringArray("look_at_target")]
+[node name="PhantomCamera3D3" type="Node3D" parent="SubViewportContainer/SubViewport" node_paths=PackedStringArray("look_at_target")]
 transform = Transform3D(-0.976914, -0.0433814, 0.20918, 0, 0.979165, 0.203067, -0.213631, 0.198379, -0.956559, 5.72013, 4.61334, -20.8519)
 script = ExtResource("6_m5yp5")
 look_at_mode = 2
@@ -211,10 +227,10 @@ tween_resource = SubResource("Resource_rkkqr")
 tween_on_load = false
 camera_3d_resource = SubResource("Resource_esnmf")
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport"]
 transform = Transform3D(0.975295, 0.112333, -0.190212, -0.0720221, 0.975701, 0.20693, 0.208836, -0.188119, 0.959687, 0, 1.49999, 2.73658)
 
-[node name="PhantomCameraHost" type="Node" parent="Camera3D"]
+[node name="PhantomCameraHost" type="Node" parent="SubViewportContainer/SubViewport/Camera3D"]
 script = ExtResource("9_5lj70")
 
-[editable path="Player"]
+[editable path="SubViewportContainer/SubViewport/Player"]
