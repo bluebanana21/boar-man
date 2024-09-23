@@ -216,3 +216,5 @@ transform = Transform3D(0.975295, 0.112333, -0.190212, -0.0720221, 0.975701, 0.2
 
 [node name="PhantomCameraHost" type="Node" parent="Camera3D"]
 script = ExtResource("9_5lj70")
+
+[editable path="Player"]
