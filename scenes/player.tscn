@@ -5,7 +5,7 @@
 [sub_resource type="GDScript" id="GDScript_2gy0a"]
 script/source = "extends CharacterBody3D
 
-const SPEED:float = 5.0
+const SPEED:float = 2.5
 const JUMP_VELOCITY:float = 4.5
 
 func _ready() -> void:
