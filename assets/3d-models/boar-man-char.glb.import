@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://b1plfkmlydtsi"
-path="res://.godot/imported/boar-man.glb-d2a3b9cefdd35b37c61522aff785403f.scn"
+uid="uid://vxy4p61os2ja"
+path="res://.godot/imported/boar-man-char.glb-e7a1695866e5ae55096010b9b7afdffc.scn"
 
 [deps]
 
-source_file="res://assets/models/boar-man.glb"
-dest_files=["res://.godot/imported/boar-man.glb-d2a3b9cefdd35b37c61522aff785403f.scn"]
+source_file="res://assets/3d-models/boar-man-char.glb"
+dest_files=["res://.godot/imported/boar-man-char.glb-e7a1695866e5ae55096010b9b7afdffc.scn"]
 
 [params]
 

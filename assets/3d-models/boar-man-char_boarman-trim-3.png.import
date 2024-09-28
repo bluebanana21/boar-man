@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://t75exc2nl3br"
-path.s3tc="res://.godot/imported/boar-man-char_boar-man-trimsheet.png-e3f217c3dfe88187b4fd447385e6a251.s3tc.ctex"
+uid="uid://bnfol87xk2rbs"
+path.s3tc="res://.godot/imported/boar-man-char_boarman-trim-3.png-03a737e05e7b0ee9466ffd81d9d9f68f.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "26a3e13894055aeb59b6574951340f1b"
+"md5": "2b28e1613a8c870b4c292bf3c5564fb4"
 }
 
 [deps]
 
-source_file="res://assets/models/boar-man-char_boar-man-trimsheet.png"
-dest_files=["res://.godot/imported/boar-man-char_boar-man-trimsheet.png-e3f217c3dfe88187b4fd447385e6a251.s3tc.ctex"]
+source_file="res://assets/3d-models/boar-man-char_boarman-trim-3.png"
+dest_files=["res://.godot/imported/boar-man-char_boarman-trim-3.png-03a737e05e7b0ee9466ffd81d9d9f68f.s3tc.ctex"]
 
 [params]
 

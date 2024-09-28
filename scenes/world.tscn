@@ -5,13 +5,13 @@
 [ext_resource type="Texture2D" uid="uid://cb6jn5q5c4fgk" path="res://assets/shader/Daylight-Box-UV-psx-1.png" id="2_olrgw"]
 [ext_resource type="Texture2D" uid="uid://djg8y25y06h5n" path="res://assets/textures/grids/Green/texture_09.png" id="3_5yguv"]
 [ext_resource type="Texture2D" uid="uid://hu5rfl6qr2nv" path="res://assets/textures/grids/Red/texture_09.png" id="4_bbcvw"]
-[ext_resource type="PackedScene" uid="uid://dtmi81dx4scx4" path="res://scenes/player.tscn" id="5_vivv0"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="6_m5yp5"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="8_0iifm"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/camera_3d_resource.gd" id="8_huh2v"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="9_5lj70"]
-[ext_resource type="Script" path="res://scenes/area_3d.gd" id="10_3ba0x"]
+[ext_resource type="Script" path="res://scripts/area_3d.gd" id="10_3ba0x"]
 [ext_resource type="Shader" path="res://assets/shader/psx-post.gdshader" id="11_ojjgn"]
+[ext_resource type="PackedScene" uid="uid://ct4djq7gy118w" path="res://scenes/player.tscn" id="12_7522c"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yeixw"]
 shader = ExtResource("11_ojjgn")
@@ -178,9 +178,6 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8.0271
 use_collision = true
 size = Vector3(12.3794, 9.77625, 1)
 
-[node name="Player" parent="SubViewportContainer/SubViewport" instance=ExtResource("5_vivv0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.967916, 0, 0.879526)
-
 [node name="PhantomCamera3D" type="Node3D" parent="SubViewportContainer/SubViewport"]
 transform = Transform3D(-0.983751, 0.0912959, -0.15459, -5.21541e-08, 0.861056, 0.50851, 0.179536, 0.500248, -0.847065, -2.38419e-07, 1.49999, -17.0578)
 script = ExtResource("6_m5yp5")
@@ -224,11 +221,10 @@ area_pcam = NodePath("../PhantomCamera3D3")
 transform = Transform3D(10, 0, 0, 0, 0.5, 0, 0, 0, 10, 0, 0.5, -9.94983)
 shape = SubResource("BoxShape3D_lodn7")
 
-[node name="PhantomCamera3D3" type="Node3D" parent="SubViewportContainer/SubViewport" node_paths=PackedStringArray("look_at_target")]
-transform = Transform3D(-0.976914, -0.0433814, 0.20918, 0, 0.979165, 0.203067, -0.213631, 0.198379, -0.956559, 5.72013, 4.61334, -20.8519)
+[node name="PhantomCamera3D3" type="Node3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(-0.964372, -0.0552018, 0.258724, -3.72529e-09, 0.977987, 0.208664, -0.264548, 0.20123, -0.943142, 5.72013, 4.61334, -20.8519)
 script = ExtResource("6_m5yp5")
 look_at_mode = 2
-look_at_target = NodePath("../Player")
 tween_resource = SubResource("Resource_rkkqr")
 tween_on_load = false
 camera_3d_resource = SubResource("Resource_esnmf")
@@ -239,4 +235,4 @@ transform = Transform3D(0.975295, 0.112333, -0.190212, -0.0720221, 0.975701, 0.2
 [node name="PhantomCameraHost" type="Node" parent="SubViewportContainer/SubViewport/Camera3D"]
 script = ExtResource("9_5lj70")
 
-[editable path="SubViewportContainer/SubViewport/Player"]
+[node name="boar-man-char" parent="SubViewportContainer/SubViewport" instance=ExtResource("12_7522c")]
