@@ -242,11 +242,10 @@ _data = {
 radius = 0.3
 
 [node name="boar-man-char" type="CharacterBody3D"]
-transform = Transform3D(-1, 0, 8.74232e-08, 0, 1, 0, -8.74232e-08, 0, -1, 0, 0, 0)
 script = ExtResource("1_hdj1v")
 
 [node name="metarig" type="Node3D" parent="."]
-transform = Transform3D(1.068, 0, 0, 0, 1.068, 0, 0, 0, 1.068, 0, 0.75, 0)
+transform = Transform3D(-1.068, 0, -9.33675e-08, 0, 1.068, 0, 9.33675e-08, 0, -1.068, 0, 0.75, 0)
 
 [node name="Skeleton3D" type="Skeleton3D" parent="metarig"]
 bones/0/name = "spine"
@@ -457,3 +456,6 @@ shape = SubResource("CylinderShape3D_67b7l")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CylinderShape3D_67b7l")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+transform = Transform3D(-2.02, 1.76594e-07, 7.71917e-15, 0, -8.8297e-08, 2.02, 1.76594e-07, 2.02, 8.8297e-08, 0, 1.245, 0)
