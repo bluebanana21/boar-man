@@ -18,7 +18,7 @@ shader = ExtResource("11_ojjgn")
 shader_parameter/enabled = true
 shader_parameter/dithering = true
 shader_parameter/colors = 12
-shader_parameter/dither_size = 3
+shader_parameter/dither_size = 1
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_otqnr"]
 panorama = ExtResource("2_olrgw")
