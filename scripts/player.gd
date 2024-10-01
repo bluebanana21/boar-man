@@ -1,17 +1,19 @@
 extends CharacterBody3D
 
+@onready var raycast = $RayCast3D
+@onready var anim_play = $AnimationPlayer
 
-var TURN_SPEED = 180
-const SPEED = 2.5
+var TURN_SPEED:int = 180
+const SPEED:float = 2.5
 
-var y_velo = 0
+var axe_damage:int = 100
 
-
-
+var y_velo:float = 0
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
+#movement code, needs improvement
 func _physics_process(delta):
 	var move_dir = 0
 	var turn_dir = 0
@@ -34,6 +36,10 @@ func _physics_process(delta):
 
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("attack"):
-		print("swing")
-	
-	
+		print("axe swung")
+		AxeSwing()
+
+
+func AxeSwing():
+	if raycast.is_colliding() and raycast.get_collider().has_method("damage"):
+		raycast.get_collider().damage()

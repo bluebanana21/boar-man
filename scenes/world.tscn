@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://bn22r1qaycqkx"]
+[gd_scene load_steps=30 format=3 uid="uid://bn22r1qaycqkx"]
 
 [ext_resource type="Texture2D" uid="uid://c8arnlq67qi7" path="res://assets/textures/grids/Dark/texture_05.png" id="1_20tk5"]
 [ext_resource type="Texture2D" uid="uid://b58xv1joypxo5" path="res://assets/textures/grids/Orange/texture_09.png" id="2_4g7fi"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" path="res://scripts/area_3d.gd" id="10_3ba0x"]
 [ext_resource type="Shader" path="res://assets/shader/psx-post.gdshader" id="11_ojjgn"]
 [ext_resource type="PackedScene" uid="uid://ct4djq7gy118w" path="res://scenes/player.tscn" id="12_7522c"]
+[ext_resource type="PackedScene" uid="uid://bwlf6mht7tj31" path="res://scenes/victim.tscn" id="13_dyovg"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yeixw"]
 shader = ExtResource("11_ojjgn")
@@ -237,3 +238,6 @@ transform = Transform3D(0.975295, 0.112333, -0.190212, -0.0720221, 0.975701, 0.2
 script = ExtResource("9_5lj70")
 
 [node name="boar-man-char" parent="SubViewportContainer/SubViewport" instance=ExtResource("12_7522c")]
+
+[node name="CharacterBody3D" parent="SubViewportContainer/SubViewport" instance=ExtResource("13_dyovg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -5.68125)
