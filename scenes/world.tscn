@@ -239,5 +239,5 @@ script = ExtResource("9_5lj70")
 
 [node name="boar-man-char" parent="SubViewportContainer/SubViewport" instance=ExtResource("12_7522c")]
 
-[node name="CharacterBody3D" parent="SubViewportContainer/SubViewport" instance=ExtResource("13_dyovg")]
+[node name="victim" parent="SubViewportContainer/SubViewport" instance=ExtResource("13_dyovg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -5.68125)
