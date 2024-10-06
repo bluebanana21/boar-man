@@ -117,12 +117,12 @@ far = 4000.0
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 material = SubResource("ShaderMaterial_yeixw")
-offset_right = 1152.0
-offset_bottom = 648.0
+offset_right = 720.0
+offset_bottom = 480.0
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
 handle_input_locally = false
-size = Vector2i(1152, 648)
+size = Vector2i(720, 480)
 render_target_update_mode = 4
 
 [node name="ComboManager" type="Node3D" parent="SubViewportContainer/SubViewport"]
@@ -215,7 +215,7 @@ transform = Transform3D(10, 0, 0, 0, 0.5, 0, 0, 0, 10, 0, 0.5, -9.94983)
 shape = SubResource("BoxShape3D_lodn7")
 
 [node name="PhantomCamera3D3" type="Node3D" parent="SubViewportContainer/SubViewport" node_paths=PackedStringArray("look_at_target")]
-transform = Transform3D(-0.9481, -0.0446096, 0.314827, -1.86265e-09, 0.99011, 0.140294, -0.317972, 0.133013, -0.938722, 6.33634, 2.82361, -18.8931)
+transform = Transform3D(-0.9481, -0.0446096, 0.314827, -1.86264e-09, 0.99011, 0.140294, -0.317972, 0.133013, -0.938722, 6.33634, 2.82361, -18.8931)
 script = ExtResource("6_m5yp5")
 look_at_mode = 2
 look_at_target = NodePath("../boar-man-char")
@@ -243,3 +243,12 @@ script = ExtResource("9_5lj70")
 
 [node name="victim" parent="SubViewportContainer/SubViewport" instance=ExtResource("13_dyovg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -5.68125)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="SubViewportContainer"]
+
+[node name="Label" type="Label" parent="SubViewportContainer/CanvasLayer"]
+offset_left = 610.0
+offset_top = 11.0
+offset_right = 693.0
+offset_bottom = 34.0
+text = "HOLYSHIIT"
