@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bwlf6mht7tj31"]
+[gd_scene load_steps=8 format=3 uid="uid://bwlf6mht7tj31"]
 
 [ext_resource type="Script" path="res://scripts/victim.gd" id="1_dh56u"]
 
@@ -8,6 +8,90 @@
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_frs03"]
 albedo_color = Color(0.199826, 0.413815, 1, 1)
+
+[sub_resource type="Animation" id="Animation_ow8if"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.824348, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:outline_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_fjyn5"]
+resource_name = "appear"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0.824348, 0), Vector3(0, 1.354, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:outline_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_54gry"]
+_data = {
+"RESET": SubResource("Animation_ow8if"),
+"appear": SubResource("Animation_fjyn5")
+}
 
 [node name="CharacterBody3D" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -21,12 +105,21 @@ mesh = SubResource("CapsuleMesh_hh65e")
 material = SubResource("StandardMaterial3D_frs03")
 
 [node name="VictimLabel" type="Label3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.32668, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.824348, 0)
+transparency = 1.0
 billboard = 1
 texture_filter = 0
+modulate = Color(1, 1, 1, 0)
+outline_modulate = Color(0, 0, 0, 0)
 text = "test"
 font_size = 120
 outline_size = 30
 uppercase = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="VictimLabel"]
+libraries = {
+"": SubResource("AnimationLibrary_54gry")
+}
+speed_scale = 3.942
+
+[node name="LabelTimer" type="Timer" parent="VictimLabel"]
