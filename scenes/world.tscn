@@ -1,8 +1,9 @@
-[gd_scene load_steps=30 format=3 uid="uid://bn22r1qaycqkx"]
+[gd_scene load_steps=31 format=3 uid="uid://bn22r1qaycqkx"]
 
 [ext_resource type="Texture2D" uid="uid://c8arnlq67qi7" path="res://assets/textures/grids/Dark/texture_05.png" id="1_20tk5"]
 [ext_resource type="Texture2D" uid="uid://b58xv1joypxo5" path="res://assets/textures/grids/Orange/texture_09.png" id="2_4g7fi"]
 [ext_resource type="Texture2D" uid="uid://cb6jn5q5c4fgk" path="res://assets/shader/Daylight-Box-UV-psx-1.png" id="2_olrgw"]
+[ext_resource type="Script" path="res://scripts/game_manager.gd" id="2_qftlj"]
 [ext_resource type="Texture2D" uid="uid://djg8y25y06h5n" path="res://assets/textures/grids/Green/texture_09.png" id="3_5yguv"]
 [ext_resource type="Texture2D" uid="uid://hu5rfl6qr2nv" path="res://assets/textures/grids/Red/texture_09.png" id="4_bbcvw"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="6_m5yp5"]
@@ -120,6 +121,23 @@ material = SubResource("ShaderMaterial_yeixw")
 offset_right = 720.0
 offset_bottom = 480.0
 
+[node name="GameManager" type="Node" parent="SubViewportContainer"]
+unique_name_in_owner = true
+script = ExtResource("2_qftlj")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="SubViewportContainer/GameManager"]
+
+[node name="PointCounter" type="Label" parent="SubViewportContainer/GameManager/CanvasLayer"]
+offset_left = 500.0
+offset_top = 10.0
+offset_right = 711.0
+offset_bottom = 67.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 1
+theme_override_font_sizes/font_size = 41
+text = "HOLYSHIIT"
+
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
 handle_input_locally = false
 size = Vector2i(720, 480)
@@ -181,22 +199,24 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8.0271
 use_collision = true
 size = Vector3(12.3794, 9.77625, 1)
 
-[node name="PhantomCamera3D" type="Node3D" parent="SubViewportContainer/SubViewport"]
+[node name="Cameras" type="Node" parent="SubViewportContainer/SubViewport"]
+
+[node name="PhantomCamera3D" type="Node3D" parent="SubViewportContainer/SubViewport/Cameras"]
 transform = Transform3D(-0.983751, 0.0912959, -0.15459, -5.21541e-08, 0.861056, 0.50851, 0.179536, 0.500248, -0.847065, -2.38419e-07, 1.49999, -17.0578)
 script = ExtResource("6_m5yp5")
 tween_resource = SubResource("Resource_26wg5")
 camera_3d_resource = SubResource("Resource_cm1f4")
 
-[node name="Area3D" type="Area3D" parent="SubViewportContainer/SubViewport" node_paths=PackedStringArray("area_pcam")]
+[node name="Area3D" type="Area3D" parent="SubViewportContainer/SubViewport/Cameras" node_paths=PackedStringArray("area_pcam")]
 priority = 5
 script = ExtResource("10_3ba0x")
 area_pcam = NodePath("../PhantomCamera3D")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Cameras/Area3D"]
 transform = Transform3D(10, 0, 0, 0, 0.5, 0, 0, 0, 10, 0, 0.5, -11.4855)
 shape = SubResource("BoxShape3D_lodn7")
 
-[node name="PhantomCamera3D2" type="Node3D" parent="SubViewportContainer/SubViewport"]
+[node name="PhantomCamera3D2" type="Node3D" parent="SubViewportContainer/SubViewport/Cameras"]
 transform = Transform3D(0.975295, 0.112333, -0.190212, -0.0720221, 0.975701, 0.20693, 0.208836, -0.188119, 0.959687, 0, 1.49999, 2.73658)
 script = ExtResource("6_m5yp5")
 priority = 1
@@ -204,51 +224,42 @@ tween_resource = SubResource("Resource_buyd3")
 tween_on_load = false
 camera_3d_resource = SubResource("Resource_f3sqj")
 
-[node name="Area3D2" type="Area3D" parent="SubViewportContainer/SubViewport" node_paths=PackedStringArray("area_pcam")]
+[node name="Area3D2" type="Area3D" parent="SubViewportContainer/SubViewport/Cameras" node_paths=PackedStringArray("area_pcam")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.74454)
 priority = 5
 script = ExtResource("10_3ba0x")
 area_pcam = NodePath("../PhantomCamera3D2")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Area3D2"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Cameras/Area3D2"]
 transform = Transform3D(10, 0, 0, 0, 0.5, 0, 0, 0, 10, 0, 0.5, -9.94983)
 shape = SubResource("BoxShape3D_lodn7")
 
-[node name="PhantomCamera3D3" type="Node3D" parent="SubViewportContainer/SubViewport" node_paths=PackedStringArray("look_at_target")]
-transform = Transform3D(-0.9481, -0.0446096, 0.314827, -1.86264e-09, 0.99011, 0.140294, -0.317972, 0.133013, -0.938722, 6.33634, 2.82361, -18.8931)
+[node name="PhantomCamera3D3" type="Node3D" parent="SubViewportContainer/SubViewport/Cameras" node_paths=PackedStringArray("look_at_target")]
+transform = Transform3D(-0.9481, -0.0446096, 0.314827, -1.86265e-09, 0.99011, 0.140294, -0.317972, 0.133013, -0.938723, 6.33634, 2.82361, -18.8931)
 script = ExtResource("6_m5yp5")
 look_at_mode = 2
-look_at_target = NodePath("../boar-man-char")
+look_at_target = NodePath("../../boar-man-char")
 tween_resource = SubResource("Resource_rkkqr")
 tween_on_load = false
 camera_3d_resource = SubResource("Resource_esnmf")
 
-[node name="Area3D3" type="Area3D" parent="SubViewportContainer/SubViewport" node_paths=PackedStringArray("area_pcam")]
+[node name="Area3D3" type="Area3D" parent="SubViewportContainer/SubViewport/Cameras" node_paths=PackedStringArray("area_pcam")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9.57267)
 priority = 5
 script = ExtResource("10_3ba0x")
 area_pcam = NodePath("../PhantomCamera3D3")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Area3D3"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Cameras/Area3D3"]
 transform = Transform3D(10, 0, 0, 0, 0.5, 0, 0, 0, 10, 0, 0.5, -9.94983)
 shape = SubResource("BoxShape3D_lodn7")
 
-[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport"]
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport/Cameras"]
 transform = Transform3D(0.975295, 0.112333, -0.190212, -0.0720221, 0.975701, 0.20693, 0.208836, -0.188119, 0.959687, 0, 1.49999, 2.73658)
 
-[node name="PhantomCameraHost" type="Node" parent="SubViewportContainer/SubViewport/Camera3D"]
+[node name="PhantomCameraHost" type="Node" parent="SubViewportContainer/SubViewport/Cameras/Camera3D"]
 script = ExtResource("9_5lj70")
 
 [node name="boar-man-char" parent="SubViewportContainer/SubViewport" instance=ExtResource("12_7522c")]
 
 [node name="victim" parent="SubViewportContainer/SubViewport" instance=ExtResource("13_dyovg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -5.68125)
-
-[node name="CanvasLayer" type="CanvasLayer" parent="SubViewportContainer"]
-
-[node name="Label" type="Label" parent="SubViewportContainer/CanvasLayer"]
-offset_left = 610.0
-offset_top = 11.0
-offset_right = 693.0
-offset_bottom = 34.0
-text = "HOLYSHIIT"
