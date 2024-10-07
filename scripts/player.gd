@@ -35,7 +35,7 @@ func _physics_process(delta):
 	move_and_slide()
 
 func _input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("attack"):
+	if event.is_action_pressed("attack"):
 		print("axe swung")
 		AxeSwing()
 

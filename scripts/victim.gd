@@ -7,7 +7,6 @@ extends CharacterBody3D
 
 const SPEED: float = 5.0
 const JUMP_VELOCITY: float = 4.5
-var combo_points: int = 100
 
 func _ready() -> void:
 	victim_label.visible = false
@@ -17,7 +16,7 @@ func _physics_process(delta: float) -> void:
 
 func damage() -> void:
 	victim_label.visible = true
-	victim_label.text = str(combo_points)
+	victim_label.text = str(game_manager.kill_ponts)
 	animation_player.play("appear")
 	game_manager.add_point()
 	print("victim dead")

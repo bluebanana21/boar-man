@@ -18,7 +18,6 @@ config/icon="res://icon.svg"
 [autoload]
 
 PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_camera_manager.gd"
-DamageNumbers="*res://scripts/damage_numbers.gd"
 
 [display]
 
