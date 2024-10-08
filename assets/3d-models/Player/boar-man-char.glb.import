@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dc4xvfq37kukw"
-path="res://.godot/imported/axe-weapon.gltf-71e8f063102d143df3219f86baf8d6cb.scn"
+uid="uid://vxy4p61os2ja"
+path="res://.godot/imported/boar-man-char.glb-f46d887fa7bb4f2b0db7be0d350b774e.scn"
 
 [deps]
 
-source_file="res://assets/3d-models/axe-weapon.gltf"
-dest_files=["res://.godot/imported/axe-weapon.gltf-71e8f063102d143df3219f86baf8d6cb.scn"]
+source_file="res://assets/3d-models/Player/boar-man-char.glb"
+dest_files=["res://.godot/imported/boar-man-char.glb-f46d887fa7bb4f2b0db7be0d350b774e.scn"]
 
 [params]
 

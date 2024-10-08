@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b72pkfu67a1ih"
-path.s3tc="res://.godot/imported/axe-texture-1.png-e189c3a8bc2724dba3be812033fb46d0.s3tc.ctex"
+path.s3tc="res://.godot/imported/axe-texture-1.png-3a2f86b47403b9d3882cf4138b2973ef.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/3d-models/axe-texture-1.png"
-dest_files=["res://.godot/imported/axe-texture-1.png-e189c3a8bc2724dba3be812033fb46d0.s3tc.ctex"]
+source_file="res://assets/3d-models/Player/axe-texture-1.png"
+dest_files=["res://.godot/imported/axe-texture-1.png-3a2f86b47403b9d3882cf4138b2973ef.s3tc.ctex"]
 
 [params]
 

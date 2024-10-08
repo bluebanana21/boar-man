@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=4 uid="uid://b000htv401a6g"]
 
-[ext_resource type="PackedScene" uid="uid://dc4xvfq37kukw" path="res://assets/3d-models/axe-weapon.gltf" id="1_oif60"]
+[ext_resource type="PackedScene" uid="uid://dc4xvfq37kukw" path="res://assets/3d-models/Player/axe-weapon.gltf" id="1_oif60"]
 [ext_resource type="Shader" path="res://assets/shader/psx.gdshader" id="2_s8rix"]
-[ext_resource type="Texture2D" uid="uid://b72pkfu67a1ih" path="res://assets/3d-models/axe-texture-1.png" id="3_uk6m4"]
+[ext_resource type="Texture2D" uid="uid://b72pkfu67a1ih" path="res://assets/3d-models/Player/axe-texture-1.png" id="3_uk6m4"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_j87l5"]
 render_priority = 0

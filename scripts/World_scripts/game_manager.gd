@@ -9,7 +9,7 @@ var kill_ponts:int = 100
 #adds point when damaging victim
 func add_point():
 	score += kill_ponts
-	point_counter.text = str(score)
+	point_counter.text = str(score) + "kill streak"
 	kill_timer.start()
 	
 	kill_ponts += 30
