@@ -19,7 +19,7 @@
 shader = ExtResource("11_ojjgn")
 shader_parameter/enabled = true
 shader_parameter/dithering = true
-shader_parameter/colors = 12
+shader_parameter/colors = 16
 shader_parameter/dither_size = 1
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_otqnr"]
@@ -57,13 +57,13 @@ albedo_texture = ExtResource("4_bbcvw")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_43gcj"]
 
-[sub_resource type="Resource" id="Resource_26wg5"]
+[sub_resource type="Resource" id="Resource_buyd3"]
 script = ExtResource("8_0iifm")
 duration = 0.0
 transition = 0
 ease = 2
 
-[sub_resource type="Resource" id="Resource_cm1f4"]
+[sub_resource type="Resource" id="Resource_f3sqj"]
 script = ExtResource("8_huh2v")
 cull_mask = 1048575
 h_offset = 0.0
@@ -78,13 +78,13 @@ far = 4000.0
 [sub_resource type="BoxShape3D" id="BoxShape3D_lodn7"]
 size = Vector3(1, 1, 0.692871)
 
-[sub_resource type="Resource" id="Resource_buyd3"]
+[sub_resource type="Resource" id="Resource_26wg5"]
 script = ExtResource("8_0iifm")
 duration = 0.0
 transition = 0
 ease = 2
 
-[sub_resource type="Resource" id="Resource_f3sqj"]
+[sub_resource type="Resource" id="Resource_cm1f4"]
 script = ExtResource("8_huh2v")
 cull_mask = 1048575
 h_offset = 0.0
@@ -138,28 +138,38 @@ theme_override_constants/outline_size = 1
 theme_override_font_sizes/font_size = 41
 text = "HOLYSHIIT"
 
-[node name="KillStreak" type="Label" parent="SubViewportContainer/GameManager/CanvasLayer"]
-offset_right = 40.0
-offset_bottom = 23.0
+[node name="KillStreakCounter" type="Label" parent="SubViewportContainer/GameManager/CanvasLayer"]
+offset_left = 451.0
+offset_top = 82.0
+offset_right = 501.0
+offset_bottom = 105.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 1
+text = "Streak"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="SubViewportContainer/GameManager/CanvasLayer"]
-offset_left = 522.0
-offset_top = 252.0
-offset_right = 562.0
-offset_bottom = 292.0
+offset_left = 547.0
+offset_top = 237.0
+offset_right = 587.0
+offset_bottom = 277.0
 text = "score"
 scroll_active = false
 
+[node name="FPSCounter" type="Label" parent="SubViewportContainer/GameManager/CanvasLayer"]
+offset_left = 8.0
+offset_top = 13.0
+offset_right = 48.0
+offset_bottom = 36.0
+
 [node name="KillTimer" type="Timer" parent="SubViewportContainer/GameManager"]
-wait_time = 2.0
+wait_time = 0.8
 one_shot = true
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
 handle_input_locally = false
 size = Vector2i(720, 480)
 render_target_update_mode = 4
-
-[node name="ComboManager" type="Node3D" parent="SubViewportContainer/SubViewport"]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport"]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
@@ -217,21 +227,6 @@ size = Vector3(12.3794, 9.77625, 1)
 
 [node name="Cameras" type="Node" parent="SubViewportContainer/SubViewport"]
 
-[node name="PhantomCamera3D" type="Node3D" parent="SubViewportContainer/SubViewport/Cameras"]
-transform = Transform3D(-0.983751, 0.0912959, -0.15459, -5.21541e-08, 0.861056, 0.50851, 0.179536, 0.500248, -0.847065, -2.38419e-07, 1.49999, -17.0578)
-script = ExtResource("6_m5yp5")
-tween_resource = SubResource("Resource_26wg5")
-camera_3d_resource = SubResource("Resource_cm1f4")
-
-[node name="Area3D" type="Area3D" parent="SubViewportContainer/SubViewport/Cameras" node_paths=PackedStringArray("area_pcam")]
-priority = 5
-script = ExtResource("10_3ba0x")
-area_pcam = NodePath("../PhantomCamera3D")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Cameras/Area3D"]
-transform = Transform3D(10, 0, 0, 0, 0.5, 0, 0, 0, 10, 0, 0.5, -11.4855)
-shape = SubResource("BoxShape3D_lodn7")
-
 [node name="PhantomCamera3D2" type="Node3D" parent="SubViewportContainer/SubViewport/Cameras"]
 transform = Transform3D(0.975295, 0.112333, -0.190212, -0.0720221, 0.975701, 0.20693, 0.208836, -0.188119, 0.959687, 0, 1.49999, 2.73658)
 script = ExtResource("6_m5yp5")
@@ -247,11 +242,26 @@ script = ExtResource("10_3ba0x")
 area_pcam = NodePath("../PhantomCamera3D2")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Cameras/Area3D2"]
-transform = Transform3D(10, 0, 0, 0, 0.5, 0, 0, 0, 10, 0, 0.5, -9.94983)
+transform = Transform3D(10.115, 0, 0, 0, 0.725, 0, 0, 0, 9.98, 0, 0.5, -9.94983)
+shape = SubResource("BoxShape3D_lodn7")
+
+[node name="PhantomCamera3D" type="Node3D" parent="SubViewportContainer/SubViewport/Cameras"]
+transform = Transform3D(-0.983751, 0.0912959, -0.15459, -5.21541e-08, 0.861056, 0.50851, 0.179536, 0.500248, -0.847065, -2.38419e-07, 1.49999, -17.0578)
+script = ExtResource("6_m5yp5")
+tween_resource = SubResource("Resource_26wg5")
+camera_3d_resource = SubResource("Resource_cm1f4")
+
+[node name="Area3D" type="Area3D" parent="SubViewportContainer/SubViewport/Cameras" node_paths=PackedStringArray("area_pcam")]
+priority = 5
+script = ExtResource("10_3ba0x")
+area_pcam = NodePath("../PhantomCamera3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Cameras/Area3D"]
+transform = Transform3D(10.16, 0, 0, 0, 0.5, 0, 0, 0, 10, 0, 0.5, -11.4855)
 shape = SubResource("BoxShape3D_lodn7")
 
 [node name="PhantomCamera3D3" type="Node3D" parent="SubViewportContainer/SubViewport/Cameras" node_paths=PackedStringArray("look_at_target")]
-transform = Transform3D(-0.9481, -0.0446096, 0.314828, -1.86265e-09, 0.99011, 0.140294, -0.317972, 0.133013, -0.938723, 6.33634, 2.82361, -18.8931)
+transform = Transform3D(-0.9481, -0.0446096, 0.314828, -1.86264e-09, 0.99011, 0.140294, -0.317972, 0.133013, -0.938723, 6.33634, 2.82361, -18.8931)
 script = ExtResource("6_m5yp5")
 look_at_mode = 2
 look_at_target = NodePath("../../boar-man-char")

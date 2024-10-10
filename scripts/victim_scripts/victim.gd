@@ -8,11 +8,28 @@ extends CharacterBody3D
 const SPEED: float = 5.0
 const JUMP_VELOCITY: float = 4.5
 
+enum {
+	IDLE, 
+	RUN,
+	ATTACK
+}
+
+var victim_state = IDLE
+
 func _ready() -> void:
 	victim_label.visible = false
 
 func _physics_process(delta: float) -> void:
-	pass
+	
+	
+	match victim_state:
+		IDLE:
+			pass
+		RUN:
+			pass
+		ATTACK:
+			pass
+
 
 func damage() -> void:
 	victim_label.visible = true

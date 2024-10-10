@@ -2,6 +2,7 @@ extends CharacterBody3D
 
 @onready var raycast = $RayCast3D
 @onready var anim_play = $AnimationPlayer
+@onready var axe_weapon: Node3D = $"metarig/Skeleton3D/BoneAttachment3D/axe-weapon"
 
 var TURN_SPEED:int = 180
 const SPEED:float = 2.5
@@ -12,6 +13,7 @@ var y_velo:float = 0
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	axe_weapon.visible = false
 
 #movement code, needs improvement
 func _physics_process(delta):
@@ -36,7 +38,6 @@ func _physics_process(delta):
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("attack"):
-		print("axe swung")
 		AxeSwing()
 
 
