@@ -14,7 +14,7 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	var fps:int = Engine.get_frames_per_second()
+	var fps:float = Engine.get_frames_per_second()
 	fps_counter.text = str(fps)
 
 #adds point when damaging victim

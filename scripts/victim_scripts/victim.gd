@@ -4,9 +4,12 @@ extends CharacterBody3D
 @onready var label_timer: Timer = $VictimLabel/LabelTimer
 @onready var game_manager: Node = %GameManager
 @onready var animation_player: AnimationPlayer = $VictimLabel/AnimationPlayer
+@onready var navigation_agent_3d: NavigationAgent3D = $NavigationAgent3D
+@onready var fov_cast: RayCast3D = $FOVCast
 
-const SPEED: float = 5.0
-const JUMP_VELOCITY: float = 4.5
+
+@export var walk_speed: float = 2.0
+@export var run_speed: float = 5.0
 
 enum {
 	IDLE, 
@@ -15,6 +18,7 @@ enum {
 }
 
 var victim_state = IDLE
+var has_seen = false
 
 func _ready() -> void:
 	victim_label.visible = false
@@ -40,3 +44,15 @@ func damage() -> void:
 	
 	await animation_player.animation_finished
 	victim_label.visible = false
+
+
+func idle() -> void:
+	look_at(global_transform.origin + velocity)
+	
+
+func run() -> void:
+	pass
+
+
+func attack() -> void:
+	pass
