@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+class_name player
+
 @onready var raycast = $RayCast3D
 @onready var anim_play = $AnimationPlayer
 @onready var axe_weapon: Node3D = $"metarig/Skeleton3D/BoneAttachment3D/axe-weapon"
@@ -19,6 +21,7 @@ func _ready() -> void:
 func _physics_process(delta):
 	var move_dir = 0
 	var turn_dir = 0
+	
 	if Input.is_action_pressed("forward"):
 		move_dir -= 1
 	if Input.is_action_pressed("backward"):
@@ -29,7 +32,7 @@ func _physics_process(delta):
 		turn_dir -= 1
 	
 	var move_str:float = Input.get_action_strength("forward") - Input.get_action_strength("backward")
-	var turn_str = Input.get_action_strength("right") - Input.get_action_strength("left")
+	var turn_str:float = Input.get_action_strength("right") - Input.get_action_strength("left")
 	
 	rotation_degrees.y += turn_dir * TURN_SPEED * turn_str * delta
 	velocity = global_transform.basis.z * SPEED * move_str * move_dir

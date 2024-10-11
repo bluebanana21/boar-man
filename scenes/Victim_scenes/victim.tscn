@@ -100,7 +100,7 @@ _data = {
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rpax8"]
 albedo_color = Color(0.775292, 0, 0.163088, 1)
 
-[node name="CharacterBody3D" type="CharacterBody3D"]
+[node name="Victim" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 script = ExtResource("1_dh56u")
 
