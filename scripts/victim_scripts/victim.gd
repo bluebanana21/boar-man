@@ -7,9 +7,13 @@ extends CharacterBody3D
 @onready var navigation_agent_3d: NavigationAgent3D = $NavigationAgent3D
 @onready var fov_cast: RayCast3D = $FOVCast
 
+@onready var get_nav_map: NavigationAgent3D = get_parent().get_node("SubViewportContainer/SubViewport/Map/NavigationRegion3D")
 
 @export var walk_speed: float = 2.0
 @export var run_speed: float = 5.0
+
+var all_points = []
+var next_point:int = 0
 
 enum {
 	IDLE, 

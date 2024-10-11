@@ -138,7 +138,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 transform = Transform3D(5, 0, 0, 0, 1, 0, 0, 0, 5, 0, 0, 0)
 shape = SubResource("BoxShape3D_1akl7")
 
-[node name="CSGMesh3D2" type="CSGMesh3D" parent="."]
+[node name="Nose" type="CSGMesh3D" parent="."]
 transform = Transform3D(0.385, 0, 0, 0, 0.385, 0, 0, 0, 0.385, 0, 0.401735, 0.492494)
 mesh = SubResource("BoxMesh_l5ets")
 material = SubResource("StandardMaterial3D_rpax8")
