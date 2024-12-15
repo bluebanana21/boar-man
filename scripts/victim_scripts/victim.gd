@@ -25,22 +25,23 @@ enum {
 var random_position := Vector3.ZERO
 var victim_state = IDLE
 var has_seen:bool = false
-var can_move = false
+var can_move:bool = true
 
 func _ready() -> void:
 	victim_label.visible = false
 
 func _physics_process(delta: float) -> void:
-	var move_dir = 0
 	var turn_dir = random_position.z
 	
-	match victim_state:
-		IDLE:
-			idle()
-		RUN:
-			pass
-		ATTACK:
-			pass
+	if can_move:
+			match victim_state:
+				IDLE:
+					idle()
+					can_move = false
+				RUN:
+					pass
+				ATTACK:
+					pass
 	
 	var destination = navigation_agent_3d.get_next_path_position()
 	var local_destination = destination - global_position
@@ -65,19 +66,16 @@ func damage() -> void:
 
 
 func idle() -> void:
-	print("hll")
-	await get_tree().create_timer(1.5).timeout
+	can_move = true
 	
 	random_position.x = randf_range(-5.0, 5.0)
 	random_position.z = randf_range(-5.0, 5.0)
 	navigation_agent_3d.set_target_position(random_position)
 	
-	
 
 
 func run() -> void:
 	pass
-
 
 func attack() -> void:
 	pass

@@ -10,6 +10,8 @@ var kill_ponts:int = 100
 var kill_streak:int = 0
 
 func _ready() -> void:
+	#Engine.max_fps = 30;
+	
 	kill_streak_counter.visible = false
 
 
@@ -27,7 +29,6 @@ func add_point():
 	kill_timer.start()
 	
 	kill_ponts += 30
-
 
 func _on_kill_timer_timeout() -> void:
 	kill_streak = 0

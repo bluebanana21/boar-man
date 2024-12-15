@@ -268,7 +268,7 @@ transform = Transform3D(10.16, 0, 0, 0, 0.5, 0, 0, 0, 10, 0, 0.5, -11.4855)
 shape = SubResource("BoxShape3D_lodn7")
 
 [node name="PhantomCamera3D3" type="Node3D" parent="SubViewportContainer/SubViewport/Cameras" node_paths=PackedStringArray("look_at_target")]
-transform = Transform3D(-0.9481, -0.0446096, 0.314828, -1.86265e-09, 0.99011, 0.140294, -0.317973, 0.133013, -0.938725, 6.33634, 2.82361, -18.8931)
+transform = Transform3D(-0.9481, -0.0446096, 0.314828, -1.86265e-09, 0.99011, 0.140294, -0.317972, 0.133013, -0.938725, 6.33634, 2.82361, -18.8931)
 script = ExtResource("6_m5yp5")
 look_at_mode = 2
 look_at_target = NodePath("../../boar-man-char")
@@ -287,7 +287,7 @@ transform = Transform3D(10, 0, 0, 0, 0.5, 0, 0, 0, 10, 0, 0.5, -9.94983)
 shape = SubResource("BoxShape3D_lodn7")
 
 [node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport/Cameras"]
-transform = Transform3D(0.975295, 0.112333, -0.190212, -0.0720221, 0.975701, 0.20693, 0.208836, -0.188119, 0.959687, 0, 1.49999, 2.73658)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.66054, -0.274462)
 
 [node name="PhantomCameraHost" type="Node" parent="SubViewportContainer/SubViewport/Cameras/Camera3D"]
 script = ExtResource("9_5lj70")

@@ -13,12 +13,15 @@ var axe_damage:int = 100
 
 var y_velo:float = 0
 
+#Make a state machine to control the movement
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	axe_weapon.visible = false
 
 #movement code, needs improvement
 func _physics_process(delta):
+	
+#	Make the fps movement too
 	var move_dir = 0
 	var turn_dir = 0
 	
