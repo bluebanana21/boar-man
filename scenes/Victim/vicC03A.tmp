@@ -1,11 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://bwlf6mht7tj31"]
+[gd_scene load_steps=15 format=3 uid="uid://bwlf6mht7tj31"]
 
-[ext_resource type="Script" path="res://scripts/victim/victim.gd" id="1_cwk41"]
 [ext_resource type="Script" path="res://scripts/states/state_machine.gd" id="2_xp636"]
-[ext_resource type="Script" path="res://scripts/victim/States/victim_idle.gd" id="3_dtdox"]
-[ext_resource type="Script" path="res://scripts/victim/States/victim_scared.gd" id="4_43h4f"]
-[ext_resource type="Script" path="res://scripts/victim/States/victim_violent.gd" id="5_a6jay"]
-[ext_resource type="Script" path="res://scripts/victim/States/victim_dead.gd" id="6_fn26f"]
+[ext_resource type="Script" path="res://scripts/victim_scripts/States/victim_idle.gd" id="3_dtdox"]
+[ext_resource type="Script" path="res://scripts/victim_scripts/States/victim_scared.gd" id="4_43h4f"]
+[ext_resource type="Script" path="res://scripts/victim_scripts/States/victim_violent.gd" id="5_a6jay"]
+[ext_resource type="Script" path="res://scripts/victim_scripts/States/victim_dead.gd" id="6_fn26f"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_he4ew"]
 
@@ -107,7 +106,6 @@ albedo_color = Color(0.775292, 0, 0.163088, 1)
 
 [node name="Victim" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-script = ExtResource("1_cwk41")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_he4ew")

@@ -23,7 +23,6 @@ func Update(delta: float):
 		wander_time -= delta
 	else:
 		randomize_wander()
-	
 
 
 func Physics_update(delta: float):

@@ -12,8 +12,8 @@
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/camera_3d_resource.gd" id="10_px4si"]
 [ext_resource type="Script" path="res://scripts/World_scripts/area_3d.gd" id="11_a1ol5"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="12_t5ikb"]
-[ext_resource type="PackedScene" uid="uid://ct4djq7gy118w" path="res://scenes/Player/player.tscn" id="13_of4av"]
 [ext_resource type="PackedScene" uid="uid://bwlf6mht7tj31" path="res://scenes/Victim/victim.tscn" id="14_cu2co"]
+[ext_resource type="PackedScene" uid="uid://ct4djq7gy118w" path="res://scenes/Player/player_FPS.tscn" id="14_r50cy"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yeixw"]
 shader = ExtResource("1_m0arw")
@@ -126,7 +126,6 @@ offset_right = 720.0
 offset_bottom = 480.0
 
 [node name="GameManager" type="Node" parent="SubViewportContainer"]
-unique_name_in_owner = true
 script = ExtResource("2_fr81a")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="SubViewportContainer/GameManager"]
@@ -237,7 +236,6 @@ size = Vector3(12.3794, 9.77625, 1)
 [node name="PhantomCamera3D2" type="Node3D" parent="SubViewportContainer/SubViewport/Cameras"]
 transform = Transform3D(0.975295, 0.112333, -0.190212, -0.0720221, 0.975701, 0.20693, 0.208836, -0.188119, 0.959687, 0, 1.49999, 2.73658)
 script = ExtResource("8_apvkx")
-priority = 1
 tween_resource = SubResource("Resource_buyd3")
 tween_on_load = false
 camera_3d_resource = SubResource("Resource_f3sqj")
@@ -267,11 +265,10 @@ area_pcam = NodePath("../PhantomCamera3D")
 transform = Transform3D(10.16, 0, 0, 0, 0.5, 0, 0, 0, 10, 0, 0.5, -11.4855)
 shape = SubResource("BoxShape3D_lodn7")
 
-[node name="PhantomCamera3D3" type="Node3D" parent="SubViewportContainer/SubViewport/Cameras" node_paths=PackedStringArray("look_at_target")]
+[node name="PhantomCamera3D3" type="Node3D" parent="SubViewportContainer/SubViewport/Cameras"]
 transform = Transform3D(-0.9481, -0.0446096, 0.314828, -1.86265e-09, 0.99011, 0.140294, -0.317972, 0.133013, -0.938725, 6.33634, 2.82361, -18.8931)
 script = ExtResource("8_apvkx")
 look_at_mode = 2
-look_at_target = NodePath("../../boar-man-char")
 tween_resource = SubResource("Resource_rkkqr")
 tween_on_load = false
 camera_3d_resource = SubResource("Resource_esnmf")
@@ -287,14 +284,16 @@ transform = Transform3D(10, 0, 0, 0, 0.5, 0, 0, 0, 10, 0, 0.5, -9.94983)
 shape = SubResource("BoxShape3D_lodn7")
 
 [node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport/Cameras"]
-transform = Transform3D(1, 0, 0, 0, 0.052336, -0.99863, 0, 0.99863, 0.052336, 0, 1.66054, -0.274462)
+transform = Transform3D(0.975295, 0.112333, -0.190212, -0.0720221, 0.975701, 0.20693, 0.208836, -0.188119, 0.959687, 0, 1.49999, 2.73658)
 
 [node name="PhantomCameraHost" type="Node" parent="SubViewportContainer/SubViewport/Cameras/Camera3D"]
 script = ExtResource("12_t5ikb")
 
-[node name="boar-man-char" parent="SubViewportContainer/SubViewport" instance=ExtResource("13_of4av")]
-
 [node name="victim" parent="SubViewportContainer/SubViewport" instance=ExtResource("14_cu2co")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -5.68125)
 
+[node name="PlayerFPS" parent="SubViewportContainer/SubViewport" instance=ExtResource("14_r50cy")]
+
 [connection signal="timeout" from="SubViewportContainer/GameManager/KillTimer" to="SubViewportContainer/GameManager" method="_on_kill_timer_timeout"]
+
+[editable path="SubViewportContainer/SubViewport/victim"]

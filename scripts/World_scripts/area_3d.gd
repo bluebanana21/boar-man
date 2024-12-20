@@ -17,6 +17,7 @@ func _ready() -> void:
 func _entered_area(area_3D: Area3D) -> void:
 	if area_3D.get_parent() is player:
 		area_pcam.set_priority(20)
+		print("set prority")
 
 
 func _exited_area(area_3D: Area3D) -> void:
