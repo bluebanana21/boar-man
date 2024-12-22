@@ -133,7 +133,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 script = ExtResource("1_cwk41")
 
 [node name="Punching-skeleton" parent="." instance=ExtResource("2_wqjt4")]
-transform = Transform3D(-0.325, 0, -2.84124e-08, 0, 0.325, 0, 2.84124e-08, 0, -0.325, 0, 0.17, 0)
+transform = Transform3D(0.325, 0, 0, 0, 0.325, 0, 0, 0, 0.325, 0, 0.17, 0)
 
 [node name="backup skeleton" parent="Punching-skeleton/Skeleton3D" index="0"]
 mesh = SubResource("ArrayMesh_pihgp")

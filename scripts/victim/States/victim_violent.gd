@@ -3,16 +3,13 @@ class_name VictimViolent
 
 var player = null 
 
+@onready var punching_skeleton: Node3D = $"../../Punching-skeleton"
 @onready var nav_agent: NavigationAgent3D = $"../../NavigationAgent3D"
 
 @export var victim:CharacterBody3D
 @export var player_path:NodePath = "/root/World/SubViewportContainer/SubViewport/PlayerFPS"
 @export var move_speed: float = 15.0
 @export var rotation_speed : float = TAU * 2
-
-var _theta : float
-#var move_direction : Vector3
-#var wander_time:float
 
 
 func go_towards_player():
@@ -23,6 +20,7 @@ func go_towards_player():
 
 # Called when the node enters the scene tree for the first time.
 func Enter():
+	punching_skeleton.rotation.y = deg_to_rad(180)
 	player = get_node(player_path)
 
 
