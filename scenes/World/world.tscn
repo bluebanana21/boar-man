@@ -13,14 +13,14 @@
 [ext_resource type="Script" path="res://scripts/World_scripts/area_3d.gd" id="11_a1ol5"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="12_t5ikb"]
 [ext_resource type="PackedScene" uid="uid://bwlf6mht7tj31" path="res://scenes/Victim/victim.tscn" id="14_cu2co"]
-[ext_resource type="PackedScene" uid="uid://ct4djq7gy118w" path="res://scenes/Player/player_FPS.tscn" id="14_r50cy"]
+[ext_resource type="PackedScene" uid="uid://ct4djq7gy118w" path="res://scenes/Player/player_TANK.tscn" id="14_r50cy"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yeixw"]
 shader = ExtResource("1_m0arw")
 shader_parameter/enabled = true
 shader_parameter/dithering = true
 shader_parameter/colors = 16
-shader_parameter/dither_size = 1
+shader_parameter/dither_size = 2
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_otqnr"]
 panorama = ExtResource("3_3b12k")
@@ -174,12 +174,14 @@ handle_input_locally = false
 size = Vector2i(720, 480)
 render_target_update_mode = 4
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport"]
+[node name="Env" type="Node" parent="SubViewportContainer/SubViewport"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport/Env"]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
 visible = false
 shadow_enabled = true
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport"]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport/Env"]
 environment = SubResource("Environment_at28d")
 
 [node name="Map" type="Node3D" parent="SubViewportContainer/SubViewport"]
@@ -295,5 +297,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -5.68125)
 [node name="PlayerFPS" parent="SubViewportContainer/SubViewport" instance=ExtResource("14_r50cy")]
 
 [connection signal="timeout" from="SubViewportContainer/GameManager/KillTimer" to="SubViewportContainer/GameManager" method="_on_kill_timer_timeout"]
-
-[editable path="SubViewportContainer/SubViewport/victim"]
