@@ -8,10 +8,13 @@ class_name VictimViolent
 
 @export var victim:CharacterBody3D
 @export var move_speed: float = 15.0
-@export var rotation_speed : float = TAU * 2
+
+const rotation_speed : float = TAU * 2
 const attack_range:float = 1.5
 
-# Called when the node enters the scene tree for the first time.
+
+#Rotates the skeleton model 180 degrees, because if you 
+#dont rotate it will face the wrong direction
 func Enter():
 	punching_skeleton.rotation.y = deg_to_rad(180)
 	player = get_node(player_path)
@@ -23,6 +26,8 @@ func Update(delta: float):
 
 
 func Physics_update(delta: float):
+#checks to see if Victim is in attacking range
+#will stop movement if in range and start again when out of range
 	if victim.global_position.distance_to(player.global_position) < attack_range:
 		animation_tree["parameters/conditions/punch"] = 1.0
 		await animation_tree.animation_finished
@@ -38,14 +43,10 @@ func Physics_update(delta: float):
 		victim.move_and_slide()
 
 
+#checks to see if victim is in range again 
+#in case if player manages to get out of attack range but animation isnt finished
 func hit_finished():
-	player.hit()
-
-
-#func _on_navigation_agent_3d_target_reached() -> void:
-	#animation_tree["parameters/conditions/punch"] = 1.0
-	#move_speed = 0
-	##player.hit()
-	#
-	#await animation_tree.animation_finished
-	#animation_tree["parameters/conditions/punch"] = 0.0
+	if victim.global_position.distance_to(player.global_position) < attack_range:
+		player.hit()
+	return
+	

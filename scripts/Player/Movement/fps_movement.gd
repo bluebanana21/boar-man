@@ -12,7 +12,7 @@ class_name FPSMovement
 var lerp_speed: float = 10.0
 var direction: Vector3 = Vector3.ZERO
 
-
+#sets the FPS phantom cam as priority and captures the mouse
 func Enter()->void:
 	phantom_cam.set_priority(20)
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -21,8 +21,9 @@ func Enter()->void:
 func Update(delta: float):
 	pass
 
-
+#checks any input from player
 func _input(event: InputEvent) -> void:
+#Camera rotation based on mouse
 	if event is InputEventMouseMotion:
 		player_char.rotate_y(deg_to_rad(-event.relative.x * mouse_sens))
 		head.rotate_x(deg_to_rad(-event.relative.y * mouse_sens))
@@ -33,6 +34,7 @@ func _input(event: InputEvent) -> void:
 		
 		phantom_cam.rotation.x = head.rotation.x
 	
+#Attack input
 	if event.is_action_pressed("attack"):
 		AxeSwing()
 
@@ -56,11 +58,13 @@ func Physics_update(delta: float):
 	player_char.move_and_slide()
 
 
+#the attack func
 func AxeSwing():
 	print("attacked")
 	if raycast.is_colliding() and raycast.get_collider().has_method("damage"):
 		raycast.get_collider().damage()
 
 
+#func for player damage, make hit instakill
 func hit():
 	print("player got hit")

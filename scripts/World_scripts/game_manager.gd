@@ -9,6 +9,7 @@ var score:int = 0
 var kill_ponts:int = 100
 var kill_streak:int = 0
 
+
 func _ready() -> void:
 	kill_streak_counter.visible = false
 
@@ -17,7 +18,8 @@ func _process(delta: float) -> void:
 	var fps:float = Engine.get_frames_per_second()
 	fps_counter.text = str(fps)
 
-#adds point when damaging victim
+#adds point when damaging victim 
+#adds 30 units to kill points variable for every consecutive kill
 func add_point():
 	score += kill_ponts
 	point_counter.text = str(score)
@@ -28,6 +30,8 @@ func add_point():
 	
 	kill_ponts += 30
 
+
+#resets the Kill streak and reverts the kill points back to 100
 func _on_kill_timer_timeout() -> void:
 	kill_streak = 0
 	kill_streak_counter.visible = false
