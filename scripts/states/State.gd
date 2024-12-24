@@ -1,6 +1,10 @@
 extends Node3D
 class_name State
 
+var player = null 
+@export var player_path:NodePath = "/root/World/SubViewportContainer/SubViewport/PlayerFPS"
+
+
 signal Transitioned
 
 func Enter()->void:

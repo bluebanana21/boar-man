@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-class_name player
+class_name TankPlayer
 
 @onready var raycast = $RayCast3D
 @onready var anim_play = $AnimationPlayer
