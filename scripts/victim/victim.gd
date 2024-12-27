@@ -2,7 +2,7 @@ extends CharacterBody3D
 class_name victim
 
 @onready var victim_label: Label3D = $VictimLabel
-@onready var game_manager: Node = $"../../GameManager"
+@onready var game_manager: Node = $"../../../GameManager"
 @onready var label_animation: AnimationPlayer = $VictimLabel/LabelAnimation
 
 

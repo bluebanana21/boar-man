@@ -9,7 +9,6 @@ class_name VictimViolent
 @export var victim:CharacterBody3D
 @export var move_speed: float = 15.0
 
-const rotation_speed : float = TAU * 2
 const attack_range:float = 1.5
 
 
@@ -22,7 +21,6 @@ func Enter():
 
 func Update(delta: float):
 	pass
-	
 
 
 func Physics_update(delta: float):

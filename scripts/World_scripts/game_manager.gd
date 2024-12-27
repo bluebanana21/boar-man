@@ -4,6 +4,8 @@ extends Node
 @onready var kill_streak_counter: Label = $CanvasLayer/KillStreakCounter
 @onready var fps_counter: Label = $CanvasLayer/FPSCounter
 @onready var kill_timer: Timer = $KillTimer
+@onready var exit_location: Node3D = $"../../exitLocation"
+@onready var victims: Node3D = $"../SubViewport/Victims"
 
 var score:int = 0
 var kill_ponts:int = 100
@@ -36,3 +38,7 @@ func _on_kill_timer_timeout() -> void:
 	kill_streak = 0
 	kill_streak_counter.visible = false
 	kill_ponts = 100
+
+
+func _physics_process(delta: float) -> void:
+	get_tree().call_group("enemies", "update_target_location", exit_location.global_transform.origin)
