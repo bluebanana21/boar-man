@@ -1414,7 +1414,7 @@ transform = Transform3D(1.91069e-15, 2.09815e-07, -1, 1, -2.09815e-07, 0, -4.371
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("2_xp636")
-initial_state = NodePath("VictimViolent")
+initial_state = NodePath("VictimScared")
 
 [node name="VictimIdle" type="Node3D" parent="StateMachine" node_paths=PackedStringArray("victim")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.615, 0)

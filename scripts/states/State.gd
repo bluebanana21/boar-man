@@ -1,8 +1,8 @@
 extends Node3D
 class_name State
 
-var player = null 
-@export var player_path:NodePath = "/root/World/SubViewportContainer/SubViewport/PlayerFPS"
+@export var player_path: NodePath = "/root/World/SubViewportContainer/SubViewport/PlayerFPS"
+@onready var player = get_node(player_path) 
 
 
 signal Transitioned

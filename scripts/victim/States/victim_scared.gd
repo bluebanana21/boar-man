@@ -23,7 +23,7 @@ func Physics_update(delta: float):
 	var new_velocity = (next_location - current_location) * speed
 	
 	victim.look_at(Vector3(next_location.x, victim.global_position.y, next_location.z), Vector3.UP)
-	victim.velocity = victim.velocity.move_toward(new_velocity, 0.25)
+	victim.velocity = victim.velocity.move_toward(new_velocity, 0.35)
 	victim.move_and_slide()
 
 

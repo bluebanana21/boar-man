@@ -11,13 +11,11 @@ class_name VictimViolent
 const move_speed: float = 4.0
 const attack_range:float = 1.5
 
-var new_velocity := Vector3.ZERO
-
 #Rotates the skeleton model 180 degrees, because if you 
 #dont rotate it will face the wrong direction
 func Enter():
 	punching_skeleton.rotation.y = deg_to_rad(180)
-	player = get_node(player_path)
+	print(player)
 
 
 func Update(delta: float):
@@ -51,6 +49,7 @@ func Physics_update(delta: float):
 func hit_finished():
 	if victim.global_position.distance_to(player.global_position) < attack_range:
 		player.hit()
+		
 	return
 
 

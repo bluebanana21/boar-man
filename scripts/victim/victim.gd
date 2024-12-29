@@ -1,5 +1,5 @@
 extends CharacterBody3D
-class_name victim
+class_name Victim
 
 @onready var victim_label: Label3D = $VictimLabel
 @onready var game_manager: Node = $"../../../GameManager"

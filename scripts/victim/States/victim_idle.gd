@@ -29,7 +29,7 @@ func Update(delta: float):
 func Physics_update(delta: float):
 #checks to see if victim is null or not
 	if victim:
-		victim.velocity = move_direction * move_speed
+		victim.velocity = move_direction * (move_speed * randf_range(0.5 , 1.5))
 	
 #checks to see if the move direction variable is null or not
 #not null because of randomize wander func
