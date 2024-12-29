@@ -160,6 +160,8 @@ text = "score"
 scroll_active = false
 
 [node name="FPSCounter" type="Label" parent="SubViewportContainer/GameManager/CanvasLayer"]
+modulate = Color(0, 0, 0, 1)
+texture_filter = 1
 offset_left = 8.0
 offset_top = 13.0
 offset_right = 48.0
@@ -187,6 +189,7 @@ environment = SubResource("Environment_at28d")
 [node name="Map" type="Node3D" parent="SubViewportContainer/SubViewport"]
 
 [node name="NavRegion" type="NavigationRegion3D" parent="SubViewportContainer/SubViewport/Map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.661963, 0)
 navigation_mesh = SubResource("NavigationMesh_cx1re")
 
 [node name="Floor" type="CSGBox3D" parent="SubViewportContainer/SubViewport/Map/NavRegion"]
@@ -292,11 +295,40 @@ transform = Transform3D(0.975295, 0.112333, -0.190212, -0.0720221, 0.975701, 0.2
 script = ExtResource("12_t5ikb")
 
 [node name="Victims" type="Node3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
 
 [node name="victim" parent="SubViewportContainer/SubViewport/Victims" instance=ExtResource("14_cu2co")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -5.68125)
 
+[node name="Victim" parent="SubViewportContainer/SubViewport/Victims" instance=ExtResource("14_cu2co")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.19968, 1, -2.05111)
+
+[node name="Victim2" parent="SubViewportContainer/SubViewport/Victims" instance=ExtResource("14_cu2co")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.22686, 1, 0)
+
+[node name="Victim3" parent="SubViewportContainer/SubViewport/Victims" instance=ExtResource("14_cu2co")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.04037, 1, 4.59626)
+
+[node name="Victim6" parent="SubViewportContainer/SubViewport/Victims" instance=ExtResource("14_cu2co")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.0492, 1, 4.59626)
+
+[node name="Victim7" parent="SubViewportContainer/SubViewport/Victims" instance=ExtResource("14_cu2co")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.88097, 1, 2.00562)
+
+[node name="Victim8" parent="SubViewportContainer/SubViewport/Victims" instance=ExtResource("14_cu2co")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.04037, 1, 6.51244)
+
+[node name="Victim9" parent="SubViewportContainer/SubViewport/Victims" instance=ExtResource("14_cu2co")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.10482, 1, 4.59626)
+
+[node name="Victim4" parent="SubViewportContainer/SubViewport/Victims" instance=ExtResource("14_cu2co")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.04037, 1, -8.66983)
+
+[node name="Victim5" parent="SubViewportContainer/SubViewport/Victims" instance=ExtResource("14_cu2co")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.1017, 1, -6.96911)
+
 [node name="PlayerFPS" parent="SubViewportContainer/SubViewport" instance=ExtResource("14_r50cy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.673, 0)
 
 [node name="exitLocation" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.37076, 0, 0)
