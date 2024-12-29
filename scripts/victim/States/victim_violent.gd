@@ -8,7 +8,7 @@ class_name VictimViolent
 
 @export var victim:CharacterBody3D
 
-const move_speed: float = 5.0
+const move_speed: float = 4.0
 const attack_range:float = 1.5
 
 var new_velocity := Vector3.ZERO
@@ -32,17 +32,18 @@ func Physics_update(delta: float):
 		await animation_tree.animation_finished
 		animation_tree["parameters/conditions/punch"] = 0.0
 	else:
-		if Engine.get_physics_frames() % 30 == 0:
-			victim.velocity = Vector3.ZERO
+#		run the pathfinding algorithim every 3/4 a second
+		if Engine.get_physics_frames() % 45 == 0:
 			nav_agent.set_target_position(player.global_transform.origin)
-			var next_nav_point := nav_agent.get_next_path_position()
-			var new_velocity := (next_nav_point - victim.global_transform.origin).normalized() * move_speed
-			victim.velocity = new_velocity
-			print(new_velocity)
+			var current_location := victim.global_transform.origin
+			var next_location := nav_agent.get_next_path_position()
+			var new_velocity := (next_location - current_location).normalized() * move_speed
+			
+			nav_agent.set_velocity(new_velocity)
 		
+#		Causes the victim to look towards the player
 		victim.look_at(Vector3(player.global_position.x, victim.global_position.y, player.global_position.z), Vector3.UP)
 		
-		victim.move_and_slide()
 
 
 #checks to see if victim is in range again 
@@ -51,3 +52,17 @@ func hit_finished():
 	if victim.global_position.distance_to(player.global_position) < attack_range:
 		player.hit()
 	return
+
+
+func _on_navigation_agent_3d_velocity_computed(safe_velocity: Vector3) -> void:
+# Checks to see if victim is in range or not
+# will stop movement code if victim is in attack range
+	if !(victim.global_position.distance_to(player.global_position) < attack_range):
+		victim.velocity = victim.velocity.move_toward(safe_velocity, 0.25)
+		victim.move_and_slide()
+	#if the distance between the victim and the player is greater 
+	#than the attack range or out of the attack range 
+	#then the movement code will continue
+	else:
+		return
+		

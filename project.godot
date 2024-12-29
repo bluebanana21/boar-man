@@ -33,10 +33,10 @@ enabled=PackedStringArray("res://addons/phantom_camera/plugin.cfg")
 [file_customization]
 
 folder_colors={
-"res://assets/": "yellow",
-"res://assets/3d-models/Player/": "yellow",
-"res://scenes/": "purple",
-"res://scripts/": "gray"
+"res://assets/": "red",
+"res://assets/3d-models/Player/": "red",
+"res://scenes/": "orange",
+"res://scripts/": "yellow"
 }
 
 [global_group]
