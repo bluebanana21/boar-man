@@ -3,7 +3,7 @@ class_name VictimDead
 
 
 func Enter():
-	pass
+	print("victim is dead")
 
 
 func Update(delta: float):

@@ -29,3 +29,8 @@ func Physics_update(delta: float):
 
 func update_target_location(target_location):
 	nav_agent.target_position = target_location
+
+
+func _on_victim_health_depleted() -> void:
+	print("transitioned from " + self.to_string() + " to death state")
+	Transitioned.emit(self, "VictimDead")

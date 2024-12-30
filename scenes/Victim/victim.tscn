@@ -1414,7 +1414,7 @@ transform = Transform3D(1.91069e-15, 2.09815e-07, -1, 1, -2.09815e-07, 0, -4.371
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("4_5jyms")
-initial_state = NodePath("VictimViolent")
+initial_state = NodePath("VictimIdle")
 
 [node name="VictimIdle" type="Node3D" parent="StateMachine" node_paths=PackedStringArray("victim")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.615, 0)
@@ -1441,5 +1441,8 @@ tree_root = SubResource("AnimationNodeStateMachine_wiruo")
 anim_player = NodePath("../Punching-skeleton/ModelAnimation")
 parameters/conditions/punch = false
 
+[connection signal="health_depleted" from="." to="StateMachine/VictimIdle" method="_on_victim_health_depleted"]
+[connection signal="health_depleted" from="." to="StateMachine/VictimScared" method="_on_victim_health_depleted"]
+[connection signal="health_depleted" from="." to="StateMachine/VictimViolent" method="_on_victim_health_depleted"]
 [connection signal="target_reached" from="NavigationAgent3D" to="StateMachine/VictimViolent" method="_on_navigation_agent_3d_target_reached"]
 [connection signal="velocity_computed" from="NavigationAgent3D" to="StateMachine/VictimViolent" method="_on_navigation_agent_3d_velocity_computed"]

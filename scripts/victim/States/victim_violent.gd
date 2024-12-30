@@ -72,3 +72,8 @@ func _on_navigation_agent_3d_velocity_computed(safe_velocity: Vector3) -> void:
 	else:
 		return
 		
+
+
+func _on_victim_health_depleted() -> void:
+	print("transitioned from " + self.to_string() + " to death state")
+	Transitioned.emit(self, "VictimDead")

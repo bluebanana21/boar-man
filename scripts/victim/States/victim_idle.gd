@@ -39,3 +39,8 @@ func Physics_update(delta: float):
 		victim.rotation.y += clamp(rotation_speed * delta, 0, abs(_theta)) * sign(_theta)
 	
 	victim.move_and_slide()
+
+
+func _on_victim_health_depleted() -> void:
+	print("transitioned from " + self.to_string() + " to death state")
+	Transitioned.emit(self, "VictimDead")
