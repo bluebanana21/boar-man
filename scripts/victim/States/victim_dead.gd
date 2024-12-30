@@ -1,4 +1,4 @@
-extends State
+extends VictimState
 class_name VictimDead
 
 

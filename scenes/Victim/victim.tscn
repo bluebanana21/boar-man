@@ -1,9 +1,9 @@
 [gd_scene load_steps=28 format=4 uid="uid://bwlf6mht7tj31"]
 
 [ext_resource type="Script" path="res://scripts/victim/victim.gd" id="1_cwk41"]
-[ext_resource type="Script" path="res://scripts/states/state_machine.gd" id="2_xp636"]
 [ext_resource type="Script" path="res://scripts/victim/States/victim_idle.gd" id="3_dtdox"]
 [ext_resource type="Shader" path="res://assets/shader/psx.gdshader" id="3_uj0m6"]
+[ext_resource type="Script" path="res://scripts/states/Victim_statte_machine.gd" id="4_5jyms"]
 [ext_resource type="Script" path="res://scripts/victim/States/victim_scared.gd" id="4_43h4f"]
 [ext_resource type="Texture2D" uid="uid://bxbtke5tdirsg" path="res://assets/3d-models/temp_assets/skeleton/Punching-skeleton_0.png" id="4_63pft"]
 [ext_resource type="Script" path="res://scripts/victim/States/victim_violent.gd" id="5_a6jay"]
@@ -1413,14 +1413,13 @@ max_speed = 5.0
 transform = Transform3D(1.91069e-15, 2.09815e-07, -1, 1, -2.09815e-07, 0, -4.37114e-08, -4.8, -4.37114e-08, 0, 0, 0)
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
-script = ExtResource("2_xp636")
-initial_state = NodePath("VictimScared")
+script = ExtResource("4_5jyms")
+initial_state = NodePath("VictimViolent")
 
 [node name="VictimIdle" type="Node3D" parent="StateMachine" node_paths=PackedStringArray("victim")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.615, 0)
 script = ExtResource("3_dtdox")
 victim = NodePath("../..")
-move_speed = 2.0
 
 [node name="VictimScared" type="Node3D" parent="StateMachine" node_paths=PackedStringArray("victim") groups=["enemies"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.615, 0)

@@ -1,9 +1,10 @@
-extends State
+extends VictimState
 class_name VictimIdle
 
 @export var victim:CharacterBody3D
-@export var move_speed: float = 10.0
 @export var rotation_speed : float = TAU * 2
+
+const move_speed: float = 120.0
 
 var _theta : float
 var move_direction : Vector3
@@ -29,7 +30,7 @@ func Update(delta: float):
 func Physics_update(delta: float):
 #checks to see if victim is null or not
 	if victim:
-		victim.velocity = move_direction * (move_speed * randf_range(0.5 , 1.5))
+		victim.velocity = move_direction * (move_speed * randf_range(0.5 , 1.5)) * delta
 	
 #checks to see if the move direction variable is null or not
 #not null because of randomize wander func
