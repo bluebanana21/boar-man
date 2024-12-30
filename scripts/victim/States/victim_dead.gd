@@ -1,9 +1,11 @@
 extends VictimState
 class_name VictimDead
 
+@export var victim:CharacterBody3D
 
 func Enter():
-	print("victim is dead")
+	victim.velocity = Vector3.ZERO
+	pass
 
 
 func Update(delta: float):

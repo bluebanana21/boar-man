@@ -3,6 +3,7 @@ class_name VictimState
 
 
 @export var player_path: NodePath = "/root/World/SubViewportContainer/SubViewport/PlayerFPS"
+
 @onready var player = get_node(player_path) 
 
 var victim_health:= 50

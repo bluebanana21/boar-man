@@ -5,11 +5,12 @@ class_name VictimViolent
 @onready var punching_skeleton: Node3D = $"../../Punching-skeleton"
 @onready var nav_agent: NavigationAgent3D = $"../../NavigationAgent3D"
 @onready var animation_tree: AnimationTree = $"../../AnimationTree"
+@onready var model_animation: AnimationPlayer = $"../../Punching-skeleton/ModelAnimation"
 
 @export var victim:CharacterBody3D
 
 const rotation_speed : float = TAU * 300
-const move_speed: float = 550.0
+var move_speed: float = 550.0
 const attack_range:float = 1.5
 
 
@@ -18,6 +19,7 @@ var _theta : float
 #Rotates the skeleton model 180 degrees, because if you 
 #dont rotate it will face the wrong direction
 func Enter():
+	print("transition to violent state")
 	print(player)
 
 
@@ -75,5 +77,6 @@ func _on_navigation_agent_3d_velocity_computed(safe_velocity: Vector3) -> void:
 
 
 func _on_victim_health_depleted() -> void:
+	nav_agent.set_velocity(Vector3.ZERO)
 	print("transitioned from " + self.to_string() + " to death state")
 	Transitioned.emit(self, "VictimDead")

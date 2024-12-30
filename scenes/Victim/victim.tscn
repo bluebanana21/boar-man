@@ -1414,7 +1414,7 @@ transform = Transform3D(1.91069e-15, 2.09815e-07, -1, 1, -2.09815e-07, 0, -4.371
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("4_5jyms")
-initial_state = NodePath("VictimIdle")
+initial_state = NodePath("VictimViolent")
 
 [node name="VictimIdle" type="Node3D" parent="StateMachine" node_paths=PackedStringArray("victim")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.615, 0)
@@ -1431,9 +1431,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.615, 0)
 script = ExtResource("5_a6jay")
 victim = NodePath("../..")
 
-[node name="VictimDead" type="Node3D" parent="StateMachine"]
+[node name="VictimDead" type="Node3D" parent="StateMachine" node_paths=PackedStringArray("victim")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, -4.62812e-29, 1, 0, 1.615, 4.62812e-29)
 script = ExtResource("6_fn26f")
+victim = NodePath("../..")
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 root_node = NodePath("../Punching-skeleton")

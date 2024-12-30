@@ -10,7 +10,7 @@ class_name VictimScared
 const speed: float = 250.0
 
 func Enter():
-	punching_skeleton.rotation.y = deg_to_rad(180)
+	pass
 
 
 func Update(delta: float):
