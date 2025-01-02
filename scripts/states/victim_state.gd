@@ -6,8 +6,6 @@ class_name VictimState
 
 @onready var player = get_node(player_path) 
 
-var victim_health:= 50
-
 signal Transitioned
 
 func Enter()->void:

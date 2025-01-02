@@ -36,7 +36,7 @@ func Physics_update(delta: float):
 		animation_tree["parameters/conditions/punch"] = 0.0
 	else:
 #		run the pathfinding algorithim every 3/4 a second
-		if Engine.get_physics_frames() % (randi_range(35, 42)) == 0:
+		if Engine.get_physics_frames() % (randi_range(20, 30)) == 0:
 			nav_agent.set_target_position(player.global_transform.origin)
 			var current_location := victim.global_transform.origin
 			var next_location := nav_agent.get_next_path_position()

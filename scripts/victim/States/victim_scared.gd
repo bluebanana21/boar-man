@@ -2,33 +2,44 @@ extends VictimState  # Replaces KinematicBody with CharacterBody3D
 class_name VictimScared
 
 
-@onready var nav_agent: NavigationAgent3D = $"../../NavigationAgent3D"
-@onready var punching_skeleton: Node3D = $"../../Punching-skeleton"
-
 @export var victim:CharacterBody3D
+@export var rotation_speed : float = TAU * 2
 
-const speed: float = 250.0
+const move_speed: float = 120.0
 
+var _theta : float
+var move_direction : Vector3
+var wander_time:float
+
+#Randomizes the direction which the victim walks towards in Idle State
+func randomize_wander():
+	move_direction = Vector3(randf_range(-1, 1), 0.0, randf_range(-1, 1)).normalized()
+	wander_time = randf_range(1,3)
+
+# Called when the node enters the scene tree for the first time.
 func Enter():
-	pass
+	randomize_wander()
 
 
 func Update(delta: float):
-	pass
+	if wander_time > 0:
+		wander_time -= delta
+	else:
+		randomize_wander()
 
 
 func Physics_update(delta: float):
-	var current_location = victim.global_transform.origin
-	var next_location = nav_agent.get_next_path_position()
-	var new_velocity = ((next_location - current_location) * speed * 2) * delta
+#checks to see if victim is null or not
+	if victim:
+		victim.velocity = move_direction * (move_speed * randf_range(0.5 , 1.5)) * delta
 	
-	victim.look_at(Vector3(next_location.x, victim.global_position.y, next_location.z), Vector3.UP)
-	victim.velocity = victim.velocity.move_toward(new_velocity, 0.35)
+#checks to see if the move direction variable is null or not
+#not null because of randomize wander func
+	if move_direction:
+		_theta = wrapf(atan2(move_direction.x, move_direction.z) - victim.rotation.y, -PI, PI)
+		victim.rotation.y += clamp((rotation_speed * delta) * 10, 0, abs(_theta)) * sign(_theta)
+	
 	victim.move_and_slide()
-
-
-func update_target_location(target_location):
-	nav_agent.target_position = target_location
 
 
 func _on_victim_health_depleted() -> void:

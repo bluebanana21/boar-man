@@ -297,13 +297,16 @@ script = ExtResource("12_t5ikb")
 [node name="Victims" type="Node3D" parent="SubViewportContainer/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
 
-[node name="victim" parent="SubViewportContainer/SubViewport/Victims" instance=ExtResource("14_cu2co")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -5.68125)
+[node name="victim1" parent="SubViewportContainer/SubViewport/Victims" instance=ExtResource("14_cu2co")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.85119, 1, -5.68125)
+
+[node name="VictimNO2" parent="SubViewportContainer/SubViewport/Victims" instance=ExtResource("14_cu2co")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.76159, 1, -5.68125)
 
 [node name="PlayerFPS" parent="SubViewportContainer/SubViewport" instance=ExtResource("14_r50cy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.673, 0)
 
 [node name="exitLocation" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.37076, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.65554, 0, 0)
 
 [connection signal="timeout" from="SubViewportContainer/GameManager/KillTimer" to="SubViewportContainer/GameManager" method="_on_kill_timer_timeout"]

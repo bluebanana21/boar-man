@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=4 uid="uid://bwlf6mht7tj31"]
+[gd_scene load_steps=29 format=4 uid="uid://bwlf6mht7tj31"]
 
 [ext_resource type="Script" path="res://scripts/victim/victim.gd" id="1_cwk41"]
 [ext_resource type="Script" path="res://scripts/victim/States/victim_idle.gd" id="3_dtdox"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bxbtke5tdirsg" path="res://assets/3d-models/temp_assets/skeleton/Punching-skeleton_0.png" id="4_63pft"]
 [ext_resource type="Script" path="res://scripts/victim/States/victim_violent.gd" id="5_a6jay"]
 [ext_resource type="Script" path="res://scripts/victim/States/victim_dead.gd" id="6_fn26f"]
+[ext_resource type="Script" path="res://scripts/victim/States/victim_to_exit.gd" id="9_llkk0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0qv65"]
 render_priority = 0
@@ -1066,7 +1067,7 @@ states/standing/node = SubResource("AnimationNodeAnimation_n17yq")
 states/standing/position = Vector2(351, 100)
 transitions = ["Start", "standing", SubResource("AnimationNodeStateMachineTransition_5wxpk"), "standing", "punch", SubResource("AnimationNodeStateMachineTransition_ieysw"), "punch", "standing", SubResource("AnimationNodeStateMachineTransition_os0qf")]
 
-[node name="Victim" type="CharacterBody3D"]
+[node name="Victim" type="CharacterBody3D" groups=["Victim_chars"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 script = ExtResource("1_cwk41")
 
@@ -1396,7 +1397,7 @@ speed_scale = 3.942
 [node name="LabelTimer" type="Timer" parent="VictimLabel"]
 
 [node name="Area3D" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 2, 0, -1, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(5, 0, 0, 0, 1, 0, 0, 0, 5, 0, 0, 0)
@@ -1414,14 +1415,14 @@ transform = Transform3D(1.91069e-15, 2.09815e-07, -1, 1, -2.09815e-07, 0, -4.371
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("4_5jyms")
-initial_state = NodePath("VictimViolent")
+initial_state = NodePath("VictimIdle")
 
 [node name="VictimIdle" type="Node3D" parent="StateMachine" node_paths=PackedStringArray("victim")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.615, 0)
 script = ExtResource("3_dtdox")
 victim = NodePath("../..")
 
-[node name="VictimScared" type="Node3D" parent="StateMachine" node_paths=PackedStringArray("victim") groups=["enemies"]]
+[node name="VictimScared" type="Node3D" parent="StateMachine" node_paths=PackedStringArray("victim")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.615, 0)
 script = ExtResource("4_43h4f")
 victim = NodePath("../..")
@@ -1434,6 +1435,10 @@ victim = NodePath("../..")
 [node name="VictimDead" type="Node3D" parent="StateMachine" node_paths=PackedStringArray("victim")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, -4.62812e-29, 1, 0, 1.615, 4.62812e-29)
 script = ExtResource("6_fn26f")
+victim = NodePath("../..")
+
+[node name="VictimToExit" type="Node3D" parent="StateMachine" node_paths=PackedStringArray("victim") groups=["enemies"]]
+script = ExtResource("9_llkk0")
 victim = NodePath("../..")
 
 [node name="AnimationTree" type="AnimationTree" parent="."]

@@ -9,7 +9,7 @@ signal health_depleted
 @onready var state_machine: Node = $StateMachine
 
 func _ready() -> void:
-	print(state_machine.current_state.name)
+	print(state_machine.current_state)
 
 #Func is called when player kill victim, make it instakill so a helth variable is unnecessary
 func damage() -> void:
@@ -29,3 +29,7 @@ func damage() -> void:
 #	waits for the label animation to finish and makes it invisible again
 	await label_animation.animation_finished
 	victim_label.visible = false
+
+
+func _on_state_machine_report_state(current_state: Variant) -> void:
+	pass

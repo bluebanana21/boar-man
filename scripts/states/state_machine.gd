@@ -1,5 +1,7 @@
 extends Node
 
+signal report_state
+
 @export var initial_state : State
 
 var current_state : State
@@ -13,6 +15,7 @@ func _ready() -> void:
 	
 	if initial_state:
 		initial_state.Enter()
+		
 		current_state = initial_state
 
 

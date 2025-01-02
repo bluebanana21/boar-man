@@ -42,6 +42,7 @@ folder_colors={
 [global_group]
 
 enemies="its for the victim scared state, but ill think of a better name later"
+Victim_chars=""
 
 [input]
 
