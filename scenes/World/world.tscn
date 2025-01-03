@@ -303,6 +303,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.85119, 1, -5.68125)
 [node name="VictimNO2" parent="SubViewportContainer/SubViewport/Victims" instance=ExtResource("14_cu2co")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.76159, 1, -5.68125)
 
+[node name="VictimNO3" parent="SubViewportContainer/SubViewport/Victims" instance=ExtResource("14_cu2co")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.76159, 1, -0.617238)
+
 [node name="PlayerFPS" parent="SubViewportContainer/SubViewport" instance=ExtResource("14_r50cy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.673, 0)
 

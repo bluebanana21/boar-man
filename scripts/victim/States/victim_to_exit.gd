@@ -33,5 +33,5 @@ func update_target_location(target_location):
 
 
 func _on_victim_health_depleted() -> void:
-	print("transitioned from " + self.to_string() + " to death state")
+	print("transitioned from " + self.name + " to death state")
 	Transitioned.emit(self, "VictimDead")

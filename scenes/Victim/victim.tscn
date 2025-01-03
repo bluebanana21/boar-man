@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/victim/victim.gd" id="1_cwk41"]
 [ext_resource type="Script" path="res://scripts/victim/States/victim_idle.gd" id="3_dtdox"]
 [ext_resource type="Shader" path="res://assets/shader/psx.gdshader" id="3_uj0m6"]
-[ext_resource type="Script" path="res://scripts/states/Victim_statte_machine.gd" id="4_5jyms"]
+[ext_resource type="Script" path="res://scripts/states/Victim_state_machine.gd" id="4_5jyms"]
 [ext_resource type="Script" path="res://scripts/victim/States/victim_scared.gd" id="4_43h4f"]
 [ext_resource type="Texture2D" uid="uid://bxbtke5tdirsg" path="res://assets/3d-models/temp_assets/skeleton/Punching-skeleton_0.png" id="4_63pft"]
 [ext_resource type="Script" path="res://scripts/victim/States/victim_violent.gd" id="5_a6jay"]
