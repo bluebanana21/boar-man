@@ -45,4 +45,7 @@ func Physics_update(delta: float):
 func _on_victim_health_depleted() -> void:
 	print(victim.name, " transitioned from " + self.name + " to death state")
 	Transitioned.emit(self, "VictimDead")
-	
+
+
+func _on_state_machine_process_death() -> void:
+	Transitioned.emit(self, "VictimScared")

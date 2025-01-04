@@ -1452,3 +1452,4 @@ parameters/conditions/punch = false
 [connection signal="health_depleted" from="." to="StateMachine/VictimViolent" method="_on_victim_health_depleted"]
 [connection signal="target_reached" from="NavigationAgent3D" to="StateMachine/VictimViolent" method="_on_navigation_agent_3d_target_reached"]
 [connection signal="velocity_computed" from="NavigationAgent3D" to="StateMachine/VictimViolent" method="_on_navigation_agent_3d_velocity_computed"]
+[connection signal="processDeath" from="StateMachine" to="StateMachine/VictimIdle" method="_on_state_machine_process_death"]

@@ -1,6 +1,7 @@
 extends Node
 
 signal deathReported
+signal processDeath
 
 @onready var game_manager: Node = $"../../../../GameManager"
 @onready var victim: Victim = $".."
@@ -77,6 +78,8 @@ func listen_to_victim_death():
 
 
 func process_death():
-	
 	if current_state is VictimIdle:
 		print(victim, " should run away now") 
+		processDeath.emit()
+	else:
+		pass
