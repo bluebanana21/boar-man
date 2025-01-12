@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=4 uid="uid://bwlf6mht7tj31"]
+[gd_scene load_steps=28 format=4 uid="uid://bwlf6mht7tj31"]
 
 [ext_resource type="Script" path="res://scripts/victim/victim.gd" id="1_cwk41"]
 [ext_resource type="Script" path="res://scripts/victim/States/victim_idle.gd" id="3_dtdox"]
@@ -8,7 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://bxbtke5tdirsg" path="res://assets/3d-models/temp_assets/skeleton/Punching-skeleton_0.png" id="4_63pft"]
 [ext_resource type="Script" path="res://scripts/victim/States/victim_violent.gd" id="5_a6jay"]
 [ext_resource type="Script" path="res://scripts/victim/States/victim_dead.gd" id="6_fn26f"]
-[ext_resource type="Script" path="res://scripts/victim/States/victim_to_exit.gd" id="9_llkk0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0qv65"]
 render_priority = 0
@@ -1437,10 +1436,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, -4.62812e-29, 1, 0, 1.615, 4.62812e
 script = ExtResource("6_fn26f")
 victim = NodePath("../..")
 
-[node name="VictimToExit" type="Node3D" parent="StateMachine" node_paths=PackedStringArray("victim") groups=["enemies"]]
-script = ExtResource("9_llkk0")
-victim = NodePath("../..")
-
 [node name="AnimationTree" type="AnimationTree" parent="."]
 root_node = NodePath("../Punching-skeleton")
 tree_root = SubResource("AnimationNodeStateMachine_wiruo")
@@ -1453,3 +1448,5 @@ parameters/conditions/punch = false
 [connection signal="target_reached" from="NavigationAgent3D" to="StateMachine/VictimViolent" method="_on_navigation_agent_3d_target_reached"]
 [connection signal="velocity_computed" from="NavigationAgent3D" to="StateMachine/VictimViolent" method="_on_navigation_agent_3d_velocity_computed"]
 [connection signal="processDeath" from="StateMachine" to="StateMachine/VictimIdle" method="_on_state_machine_process_death"]
+[connection signal="processDeath" from="StateMachine" to="StateMachine/VictimScared" method="_on_state_machine_process_death"]
+[connection signal="processDeath" from="StateMachine" to="StateMachine/VictimViolent" method="_on_state_machine_process_death"]

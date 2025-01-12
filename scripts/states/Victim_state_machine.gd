@@ -1,5 +1,6 @@
 extends Node
 
+signal statusReport(state)
 signal deathReported
 signal processDeath
 
@@ -25,6 +26,7 @@ func _ready() -> void:
 		state_report = initial_state.name
 	
 	listen_to_victim_death()
+	statusReport.emit(state_report)
 
 
 func _process(delta: float) -> void:
@@ -57,6 +59,8 @@ func on_child_transition(state, new_state_name)->void:
 	
 	report_death()
 	print("state report: ", state_report)
+	
+	statusReport.emit(state_report)
 
 
 func report_death():
@@ -72,14 +76,17 @@ func get_current_state():
 	return state_report
 
 
+#the report death back signal from game manager is being processed here
 func listen_to_victim_death():
 	game_manager.report_death_back.connect(process_death)
-	print(victim, " is processing death")
+	print(victim.name, " is processing death")
 
 
 func process_death():
-	if current_state is VictimIdle:
-		print(victim, " should run away now") 
+	if current_state is not VictimDead:
+		print(victim.name, " is sending process death signal") 
+		
+#		process death is sent to the states in the state machine not the game manager
 		processDeath.emit()
 	else:
 		pass

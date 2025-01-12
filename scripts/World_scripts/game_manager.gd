@@ -13,12 +13,26 @@ var score:int = 0
 var kill_ponts:int = 100
 var kill_streak:int = 0
 var victims:Array = []
+var current_victim_states : Array = []
+var num_of_violent: int = 0
 
 func _ready() -> void:
 	#count_victim() 
 	#victim_current_state()
 	kill_streak_counter.visible = false
 	report_death_to_victims()
+	
+	for victim in victims_node.get_children():
+		var victim_state_machine = victim.get_node("StateMachine")
+		victim_state_machine.statusReport.connect(process_victim_state)
+		victim_state_machine.statusReport.connect(count_violent_victims)
+		var victim_volent_state_node = victim_state_machine.get_node("VictimViolent")
+		victim_volent_state_node.entered_violent.connect(increase_violent_num)
+		victim_volent_state_node.exited_violent.connect(decrease_violent_num)
+
+
+func state_machine_processes():
+	pass
 
 
 func _process(delta: float) -> void:
@@ -55,10 +69,11 @@ func report_death_to_victims():
 		var victim_state_machine = victim.get_node("StateMachine")
 		victim_state_machine.deathReported.connect(reported_death)
 
-
+#Func is called every time a victim is killed and reorts the death back to the victims
 func reported_death():
 	print("i dont even know anymore")
 	report_death_back.emit()
+
 
 func count_victim():
 	victims.clear()  # Clear the array to ensure it's up-to-date
@@ -67,17 +82,28 @@ func count_victim():
 	print("Victims counted:", victims.size())  # Debug: print the number of victims
 
 
-func victim_current_state() -> void:
-	for victim in victims:
-		var victim_state_machine = victim.get_node("StateMachine")
-		if victim_state_machine.has_method("get_current_state"):  # Check if the victim has a method to get its state
-			var state = victim_state_machine.get_current_state()  # Call the method to retrieve the state
-			if state == null:
-				print("state is null lol")
-			else:
-				print("Victim State is:", state)   # Debug: Print the state
-		elif "state" in victim_state_machine:
-			var state = victim_state_machine.current_state        # Access the state property directly
-			print("Victim State:", state)   # Debug: Print the state
-		else:
-			print("Victim does not have a state.")
+func process_victim_state(state_report):
+	print("processing the state of victim")
+	if state_report == "VictimToExit":
+		#print("victim to exit state")
+		get_tree().call_group("enemies", "update_target_location", exit_location.global_transform.origin)
+
+
+func count_violent_victims(state_report):
+	pass
+	#if state_report == "VictimViolent":
+		#num_of_violent += 1
+	#elif state_report != "VictimViolent":  # Assuming there's a state to signify a non-violent state.
+		#num_of_violent -= 1
+	#num_of_violent = clamp(num_of_violent, 0, victims.size())  # Ensure the count stays within valid bounds.
+	#print("Number of violent victims:", num_of_violent)
+
+
+func increase_violent_num():
+	num_of_violent += 1
+	print("number of violent victims: ", num_of_violent)
+
+
+func decrease_violent_num():
+	num_of_violent -= 1
+	print("number of violent victims: ", num_of_violent)

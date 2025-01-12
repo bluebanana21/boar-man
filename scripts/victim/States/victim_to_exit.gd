@@ -29,9 +29,23 @@ func Physics_update(delta: float):
 
 func update_target_location(target_location):
 	nav_agent.target_position = target_location
-	print("target location is being updated")
+	#print("target location is being updated")
 
 
 func _on_victim_health_depleted() -> void:
-	print("transitioned from " + self.name + " to death state")
+	#print("transitioned from " + self.name + " to death state")
 	Transitioned.emit(self, "VictimDead")
+
+
+func _on_state_machine_process_death() -> void:
+	var rand_num = randi_range(0, 100)
+	if rand_num < 50:
+		Transitioned.emit(self, "VictimScared")
+		#print(victim.name, "transition to scared")
+	elif rand_num < 80:
+		return
+		#print(victim.name, "transition to exit")
+	
+	else:
+		Transitioned.emit(self, "VictimViolent")
+		#print(victim.name, "transition to violent")

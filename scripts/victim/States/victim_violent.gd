@@ -1,6 +1,8 @@
 extends VictimState
 class_name VictimViolent
 
+signal entered_violent
+signal exited_violent
 
 @onready var punching_skeleton: Node3D = $"../../Punching-skeleton"
 @onready var nav_agent: NavigationAgent3D = $"../../NavigationAgent3D"
@@ -10,17 +12,20 @@ class_name VictimViolent
 @export var victim:CharacterBody3D
 
 const rotation_speed : float = TAU * 300
-var move_speed: float = 550.0
 const attack_range:float = 1.5
 
-
+var move_speed: float = 550.0
 var _theta : float
+var active_script: bool = false
 
 #Rotates the skeleton model 180 degrees, because if you 
 #dont rotate it will face the wrong direction
 func Enter():
-	print("transition to violent state")
-	print(player)
+	active_script = true
+	if !active_script:
+		return
+	print(victim.name, " transition to violent state ahhhhhhhhhhh")
+	entered_violent.emit()
 
 
 func Update(delta: float):
@@ -28,6 +33,8 @@ func Update(delta: float):
 
 
 func Physics_update(delta: float):
+	if !active_script:
+		return
 #checks to see if Victim is in attacking range
 #will stop movement if in range and start again when out of range
 	if victim.global_position.distance_to(player.global_position) < attack_range:
@@ -49,6 +56,8 @@ func Physics_update(delta: float):
 #checks to see if victim is in range again 
 #in case if player manages to get out of attack range but animation isnt finished
 func hit_finished():
+	if !active_script:
+		return
 	if victim.global_position.distance_to(player.global_position) < attack_range:
 		player.hit()
 		
@@ -56,7 +65,8 @@ func hit_finished():
 
 
 func _on_navigation_agent_3d_velocity_computed(safe_velocity: Vector3) -> void:
-	
+	if !active_script:
+		return
 	var delta := victim.get_process_delta_time()
 # Checks to see if victim is in range or not
 # will stop movement code if victim is in attack range
@@ -77,6 +87,21 @@ func _on_navigation_agent_3d_velocity_computed(safe_velocity: Vector3) -> void:
 
 
 func _on_victim_health_depleted() -> void:
+	if !active_script:
+		return
 	nav_agent.set_velocity(Vector3.ZERO)
-	print("transitioned from " + self.name + " to death state")
+	print(victim.name + " transitioned from " + self.name +  " to death state")
+	#exited_violent.emit()
 	Transitioned.emit(self, "VictimDead")
+
+#
+#func _on_state_machine_process_death() -> void:
+	#var rand_num = randi_range(0, 100)
+	#if rand_num < 50:
+		#Transitioned.emit(self, "VictimScared")
+		##exited_violent.emit()
+		#print("being processed in violent state")
+		##print(victim.name, "transition to scared")
+	#else:
+		#return
+		##print(victim.name, "transition to violent")
