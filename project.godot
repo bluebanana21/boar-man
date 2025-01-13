@@ -28,11 +28,12 @@ window/vsync/vsync_mode=0
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/phantom_camera/plugin.cfg")
+enabled=PackedStringArray("res://addons/func_godot/plugin.cfg", "res://addons/phantom_camera/plugin.cfg")
 
 [file_customization]
 
 folder_colors={
+"res://TrenchBroom/": "green",
 "res://assets/": "red",
 "res://assets/3d-models/Player/": "red",
 "res://scenes/": "orange",

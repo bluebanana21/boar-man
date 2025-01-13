@@ -1450,3 +1450,4 @@ parameters/conditions/punch = false
 [connection signal="processDeath" from="StateMachine" to="StateMachine/VictimIdle" method="_on_state_machine_process_death"]
 [connection signal="processDeath" from="StateMachine" to="StateMachine/VictimScared" method="_on_state_machine_process_death"]
 [connection signal="processDeath" from="StateMachine" to="StateMachine/VictimViolent" method="_on_state_machine_process_death"]
+[connection signal="in_death_state" from="StateMachine/VictimDead" to="." method="_on_victim_dead_in_death_state"]

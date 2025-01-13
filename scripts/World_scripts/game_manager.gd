@@ -105,5 +105,7 @@ func increase_violent_num():
 
 
 func decrease_violent_num():
+	if num_of_violent <= 0:
+		return
 	num_of_violent -= 1
 	print("number of violent victims: ", num_of_violent)

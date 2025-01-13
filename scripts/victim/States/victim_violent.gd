@@ -91,7 +91,7 @@ func _on_victim_health_depleted() -> void:
 		return
 	nav_agent.set_velocity(Vector3.ZERO)
 	print(victim.name + " transitioned from " + self.name +  " to death state")
-	#exited_violent.emit()
+	exited_violent.emit()
 	Transitioned.emit(self, "VictimDead")
 
 #
