@@ -5,7 +5,7 @@
 [ext_resource type="Resource" uid="uid://bkjxc54mmdhbo" path="res://addons/func_godot/game_config/trenchbroom/tb_face_tag_origin.tres" id="3_3fa25"]
 [ext_resource type="Resource" uid="uid://dxuu3o32jcsde" path="res://my_fgd.tres" id="4_7pfj4"]
 [ext_resource type="Texture2D" uid="uid://decwujsyhj0qy" path="res://addons/func_godot/icon32.png" id="5_v5bn6"]
-[ext_resource type="Script" path="res://addons/func_godot/src/trenchbroom/trenchbroom_game_config.gd" id="6_3i5nj"]
+[ext_resource type="Script" uid="uid://cocnhufwivsx4" path="res://addons/func_godot/src/trenchbroom/trenchbroom_game_config.gd" id="6_3i5nj"]
 
 [resource]
 script = ExtResource("6_3i5nj")

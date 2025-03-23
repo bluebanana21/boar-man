@@ -1,26 +1,26 @@
 [gd_scene load_steps=8 format=4 uid="uid://b000htv401a6g"]
 
 [ext_resource type="PackedScene" uid="uid://dc4xvfq37kukw" path="res://assets/3d-models/Player/axe-weapon.gltf" id="1_oif60"]
-[ext_resource type="Shader" path="res://assets/shader/psx.gdshader" id="2_s8rix"]
+[ext_resource type="Shader" uid="uid://qtktkujbkwti" path="res://assets/shader/psx.gdshader" id="2_s8rix"]
 [ext_resource type="Texture2D" uid="uid://b72pkfu67a1ih" path="res://assets/3d-models/Player/axe-texture-1.png" id="3_uk6m4"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_j87l5"]
 render_priority = 0
 shader = ExtResource("2_s8rix")
 shader_parameter/affine_mapping = false
+shader_parameter/albedo = ExtResource("3_uk6m4")
 shader_parameter/alpha_scissor = 0.5
 shader_parameter/jitter = 0.35
 shader_parameter/resolution = Vector2i(320, 240)
-shader_parameter/albedo = ExtResource("3_uk6m4")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_da7op"]
 render_priority = 0
 shader = ExtResource("2_s8rix")
 shader_parameter/affine_mapping = false
+shader_parameter/albedo = ExtResource("3_uk6m4")
 shader_parameter/alpha_scissor = 0.5
 shader_parameter/jitter = 0.25
 shader_parameter/resolution = Vector2i(320, 240)
-shader_parameter/albedo = ExtResource("3_uk6m4")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_nsjjp"]
 _surfaces = [{

@@ -25,7 +25,6 @@ func _ready() -> void:
 	for victim in victims_node.get_children():
 		var victim_state_machine = victim.get_node("StateMachine")
 		victim_state_machine.statusReport.connect(process_victim_state)
-		victim_state_machine.statusReport.connect(count_violent_victims)
 		var victim_volent_state_node = victim_state_machine.get_node("VictimViolent")
 		victim_volent_state_node.entered_violent.connect(increase_violent_num)
 		victim_volent_state_node.exited_violent.connect(decrease_violent_num)
@@ -87,16 +86,6 @@ func process_victim_state(state_report):
 	if state_report == "VictimToExit":
 		#print("victim to exit state")
 		get_tree().call_group("enemies", "update_target_location", exit_location.global_transform.origin)
-
-
-func count_violent_victims(state_report):
-	pass
-	#if state_report == "VictimViolent":
-		#num_of_violent += 1
-	#elif state_report != "VictimViolent":  # Assuming there's a state to signify a non-violent state.
-		#num_of_violent -= 1
-	#num_of_violent = clamp(num_of_violent, 0, victims.size())  # Ensure the count stays within valid bounds.
-	#print("Number of violent victims:", num_of_violent)
 
 
 func increase_violent_num():

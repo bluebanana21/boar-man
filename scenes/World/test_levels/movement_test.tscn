@@ -1,0 +1,55 @@
+[gd_scene load_steps=8 format=3 uid="uid://6xhqqqt4c44s"]
+
+[ext_resource type="Texture2D" uid="uid://bdw2j5kejiegc" path="res://assets/textures/grids/Dark/texture_01.png" id="1_aaj7v"]
+[ext_resource type="Texture2D" uid="uid://cb6jn5q5c4fgk" path="res://assets/shader/Daylight-Box-UV-psx-1.png" id="3_h1q3y"]
+[ext_resource type="PackedScene" uid="uid://ct4djq7gy118w" path="res://scenes/Player/player_FPS.tscn" id="3_y6tpg"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y6tpg"]
+albedo_texture = ExtResource("1_aaj7v")
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_y6tpg"]
+panorama = ExtResource("3_h1q3y")
+filter = false
+
+[sub_resource type="Sky" id="Sky_w8b7c"]
+sky_material = SubResource("PanoramaSkyMaterial_y6tpg")
+
+[sub_resource type="Environment" id="Environment_a4sko"]
+background_mode = 2
+background_color = Color(0.231599, 7.12335e-05, 0.811067, 1)
+sky = SubResource("Sky_w8b7c")
+ambient_light_source = 2
+ambient_light_color = Color(0.892469, 0.878271, 0.878528, 1)
+tonemap_mode = 2
+sdfgi_enabled = true
+glow_enabled = true
+fog_light_color = Color(0, 0, 0, 1)
+fog_density = 0.001
+
+[node name="MovementTest" type="Node3D"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.67914, -0.5, 6.95264)
+material_override = SubResource("StandardMaterial3D_y6tpg")
+use_collision = true
+size = Vector3(100, 1, 100)
+
+[node name="Env" type="Node" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Env"]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+visible = false
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Env"]
+environment = SubResource("Environment_a4sko")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5828, -4)
+use_collision = true
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGBox3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.07456, 1.16444, 3.60057)
+use_collision = true
+
+[node name="PlayerFPS" parent="." instance=ExtResource("3_y6tpg")]

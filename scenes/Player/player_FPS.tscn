@@ -1,23 +1,18 @@
-[gd_scene load_steps=23 format=4 uid="uid://ct4djq7gy118w"]
+[gd_scene load_steps=16 format=4 uid="uid://ct4djq7gy118w"]
 
-[ext_resource type="Script" path="res://scripts/Player/player_fps.gd" id="1_2ufla"]
+[ext_resource type="Script" uid="uid://xfkly6bq1tbc" path="res://scripts/Player/Movement/player_fps.gd" id="1_2ufla"]
 [ext_resource type="Texture2D" uid="uid://bnfol87xk2rbs" path="res://assets/3d-models/Player/boar-man-char_boarman-trim-3.png" id="1_pkxwr"]
-[ext_resource type="Shader" path="res://assets/shader/psx.gdshader" id="2_uf7br"]
+[ext_resource type="Shader" uid="uid://qtktkujbkwti" path="res://assets/shader/psx.gdshader" id="2_uf7br"]
 [ext_resource type="PackedScene" uid="uid://b000htv401a6g" path="res://scenes/Weapons/axe_weapon.tscn" id="4_wh33s"]
-[ext_resource type="Script" path="res://scripts/states/state_machine.gd" id="5_ljhhb"]
-[ext_resource type="Script" path="res://scripts/Player/Movement/fps_movement.gd" id="6_q1i84"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="7_nth62"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="8_ukvaj"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/camera_3d_resource.gd" id="9_mruly"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_o84dk"]
 render_priority = 0
 shader = ExtResource("2_uf7br")
 shader_parameter/affine_mapping = false
+shader_parameter/albedo = ExtResource("1_pkxwr")
 shader_parameter/alpha_scissor = 0.5
 shader_parameter/jitter = 0.35
 shader_parameter/resolution = Vector2i(320, 240)
-shader_parameter/albedo = ExtResource("1_pkxwr")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_0fcmq"]
 resource_name = "boar-man-char_Cube_001"
@@ -122,6 +117,10 @@ bind/25/pose = Transform3D(-0.277189, 1.77568e-07, 6.14649e-08, 9.67008e-07, -2.
 bind/26/name = &"heel.02.R"
 bind/26/bone = -1
 bind/26/pose = Transform3D(-5.04344e-08, -3.09783e-07, -0.277189, -0.277189, -3.06793e-07, -8.36521e-07, -4.40741e-09, 0.27719, -5.45218e-07, -0.0826488, -0.127141, 0.0182205)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_67b7l"]
+height = 1.90601
+radius = 0.3
 
 [sub_resource type="Animation" id="Animation_8eswy"]
 resource_name = "walking"
@@ -241,11 +240,8 @@ tracks/15/keys = PackedFloat32Array(0, 1, 6.18059e-08, -0.991693, 0.128625, 3.11
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yhay6"]
 _data = {
-"walking": SubResource("Animation_8eswy")
+&"walking": SubResource("Animation_8eswy")
 }
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_67b7l"]
-radius = 0.3
 
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_pnv5s"]
 
@@ -261,7 +257,6 @@ start_offset = 0.0
 loop_mode = 1
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_7uhhj"]
-graph_offset = Vector2(-541.822, -13.4076)
 nodes/Blend2/node = SubResource("AnimationNodeBlend2_pnv5s")
 nodes/Blend2/position = Vector2(120, 0)
 nodes/Idle/node = SubResource("AnimationNodeAnimation_x6d03")
@@ -284,24 +279,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 "
-
-[sub_resource type="Resource" id="Resource_bciv0"]
-script = ExtResource("8_ukvaj")
-duration = 1.0
-transition = 0
-ease = 2
-
-[sub_resource type="Resource" id="Resource_nqsy6"]
-script = ExtResource("9_mruly")
-cull_mask = 1048575
-h_offset = 0.0
-v_offset = 0.0
-projection = 0
-fov = 75.0
-size = 1.0
-frustum_offset = Vector2(0, 0)
-near = 0.05
-far = 4000.0
 
 [node name="PlayerFPS" type="CharacterBody3D"]
 script = ExtResource("1_2ufla")
@@ -512,23 +489,23 @@ bone_idx = 14
 [node name="axe-weapon" parent="metarig/Skeleton3D/BoneAttachment3D" instance=ExtResource("4_wh33s")]
 transform = Transform3D(-0.997023, 0.0550434, 0.0539972, 0.047475, -0.113594, 0.992392, 0.0607585, 0.992001, 0.110642, -0.00502959, 0.09314, 0.0433466)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_yhay6")
-}
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CylinderShape3D_67b7l")
 
-[node name="Area3D" type="Area3D" parent="."]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("CylinderShape3D_67b7l")
-
-[node name="RayCast3D" type="RayCast3D" parent="."]
+[node name="AttackRay" type="RayCast3D" parent="."]
 transform = Transform3D(-2.02, 1.76594e-07, 7.71917e-15, 0, -8.8297e-08, 2.02, 1.76594e-07, 2.02, 8.8297e-08, 0, 1.245, 0)
+
+[node name="Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.66054, -0.274462)
+
+[node name="Camera3D" type="Camera3D" parent="Head"]
+transform = Transform3D(1, 0, 0, 0, 0.901908, 0.431928, 0, -0.431928, 0.901908, 0, 0.291035, 1.62421)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_yhay6")
+}
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeBlendTree_7uhhj")
@@ -536,21 +513,10 @@ anim_player = NodePath("../AnimationPlayer")
 parameters/Blend2/blend_amount = 0
 script = SubResource("GDScript_38wjv")
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
-script = ExtResource("5_ljhhb")
-initial_state = NodePath("FPSMovement")
+[node name="YCollisionRay" type="RayCast3D" parent="."]
+transform = Transform3D(21.215, -1.50996e-07, 3.01463e-06, -3.20338e-06, -1, 1.7454e-06, 3.20338e-06, -8.74228e-08, -19.965, 2.1986e-07, 1.245, 0.00451255)
 
-[node name="FPSMovement" type="Node3D" parent="StateMachine" node_paths=PackedStringArray("player_char")]
-script = ExtResource("6_q1i84")
-player_char = NodePath("../..")
-mouse_sens = 0.25
+[node name="DodgeTimer" type="Timer" parent="."]
+one_shot = true
 
-[node name="PlayerDead" type="Node3D" parent="StateMachine"]
-
-[node name="Head" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.66054, -0.274462)
-
-[node name="PhantomCamera3D" type="Node3D" parent="Head"]
-script = ExtResource("7_nth62")
-tween_resource = SubResource("Resource_bciv0")
-camera_3d_resource = SubResource("Resource_nqsy6")
+[connection signal="timeout" from="DodgeTimer" to="." method="_on_dodge_timer_timeout"]

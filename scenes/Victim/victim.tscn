@@ -1,22 +1,22 @@
 [gd_scene load_steps=28 format=4 uid="uid://bwlf6mht7tj31"]
 
-[ext_resource type="Script" path="res://scripts/victim/victim.gd" id="1_cwk41"]
-[ext_resource type="Script" path="res://scripts/victim/States/victim_idle.gd" id="3_dtdox"]
-[ext_resource type="Shader" path="res://assets/shader/psx.gdshader" id="3_uj0m6"]
-[ext_resource type="Script" path="res://scripts/states/Victim_state_machine.gd" id="4_5jyms"]
-[ext_resource type="Script" path="res://scripts/victim/States/victim_scared.gd" id="4_43h4f"]
+[ext_resource type="Script" uid="uid://dkpxg5bw6bs0t" path="res://scripts/victim/victim.gd" id="1_cwk41"]
+[ext_resource type="Script" uid="uid://ciowfqvaqwq4q" path="res://scripts/victim/States/victim_idle.gd" id="3_dtdox"]
+[ext_resource type="Shader" uid="uid://qtktkujbkwti" path="res://assets/shader/psx.gdshader" id="3_uj0m6"]
+[ext_resource type="Script" uid="uid://bvv0toy0k8t7e" path="res://scripts/states/Victim_state_machine.gd" id="4_5jyms"]
+[ext_resource type="Script" uid="uid://c83m2sh1l7ltg" path="res://scripts/victim/States/victim_scared.gd" id="4_43h4f"]
 [ext_resource type="Texture2D" uid="uid://bxbtke5tdirsg" path="res://assets/3d-models/temp_assets/skeleton/Punching-skeleton_0.png" id="4_63pft"]
-[ext_resource type="Script" path="res://scripts/victim/States/victim_violent.gd" id="5_a6jay"]
-[ext_resource type="Script" path="res://scripts/victim/States/victim_dead.gd" id="6_fn26f"]
+[ext_resource type="Script" uid="uid://b72ut4hnua2p3" path="res://scripts/victim/States/victim_violent.gd" id="5_a6jay"]
+[ext_resource type="Script" uid="uid://7gixqv1ovs0s" path="res://scripts/victim/States/victim_dead.gd" id="6_fn26f"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0qv65"]
 render_priority = 0
 shader = ExtResource("3_uj0m6")
 shader_parameter/affine_mapping = false
+shader_parameter/albedo = ExtResource("4_63pft")
 shader_parameter/alpha_scissor = 0.5
 shader_parameter/jitter = 0.5
 shader_parameter/resolution = Vector2i(320, 240)
-shader_parameter/albedo = ExtResource("4_63pft")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_pihgp"]
 resource_name = "Cube_001"
@@ -946,10 +946,10 @@ tracks/36/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_x1xd7"]
 _data = {
-"RESET": SubResource("Animation_2b31g"),
-"backup skeleton|CameraAction": SubResource("Animation_i1n4w"),
-"backup skeleton|GRIDAction": SubResource("Animation_12qtj"),
-"mixamo_com": SubResource("Animation_cifdx")
+&"RESET": SubResource("Animation_2b31g"),
+&"backup skeleton|CameraAction": SubResource("Animation_i1n4w"),
+&"backup skeleton|GRIDAction": SubResource("Animation_12qtj"),
+&"mixamo_com": SubResource("Animation_cifdx")
 }
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_he4ew"]
@@ -1035,8 +1035,8 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_54gry"]
 _data = {
-"RESET": SubResource("Animation_ow8if"),
-"appear": SubResource("Animation_fjyn5")
+&"RESET": SubResource("Animation_ow8if"),
+&"appear": SubResource("Animation_fjyn5")
 }
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1akl7"]
